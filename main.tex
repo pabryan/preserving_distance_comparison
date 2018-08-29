@@ -1,0 +1,814 @@
+\documentclass[a4paper, 12pt]{amsart}
+
+\input{StandardPaper2}
+\input{local_definitions}
+
+\title[Chord arc comparison for preserving flows]{Chord arc comparison for curve flows preserving a global functional}
+
+\date{}
+
+\dedicatory{}
+\subjclass[2010]{58J35, 35K10, 58B20}
+\keywords{curves, curve shortening, distance, comparison}
+
+\begin{document}
+
+\begin{abstract}
+Flows of plane curves that preserve a global geometric quantity such as total length and enclosed area are studied via distance comparison techniques.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:intro}
+
+We consider curves in the plane evolving by the flow
+\begin{equation}
+\label{eq:flow}
+\partial_t X = -(\kappa - h(t)) \nor
+\end{equation}
+where \(h(t)\) is a global term.
+
+\section{Basic conventions, quantities and evolution equations}
+\label{sec:basic}
+
+We use the convention for the Frenet-Serret equations
+\begin{equation}
+\label{eq:fs}
+\partial_s \tang = - \kappa \nor, \quad \partial_s \nor = \kappa \tang.
+\end{equation}
+
+\begin{lemma}
+\label{lem:basic_evolution}
+The following evolution equations hold:
+\begin{enumerate}
+\item \([\partial_s, \partial_t] = \kappa^2 \partial_s\)
+\item \(\partial_t ds = -\kappa^2 ds\)
+\item \(\partial_t \tang = -\partial_s \kappa\nor\)
+\item \(\partial_t \nor = \partial_s \kappa \tang\)
+\item \(\partial_t \kappa = \partial_s^2 \kappa + \kappa^3\).
+\end{enumerate}
+\end{lemma}
+
+Let us now state the definitions we use for intrinsic and extrinsic distances. Note in particular, the intrinsic distance we use is oriented which is for convenience and makes for slightly cleaner exposition later.
+
+\begin{defn}
+\label{defn:dist}
+Let \((p,q) \in \gamma \times \gamma\). The \emph{extrinsic distance} is defined to be,
+\[
+d_t(p, q) = \|\gamma_t(q) - \gamma_t(p)\|.
+\]
+The \emph{oriented intrinsic distance} or \emph{oriented arc length} is defined to be,
+\[
+\ell_t(p, q) = \int_p^q ds_t.
+\]
+\end{defn}
+
+Note that by oriented, we mean the length along \(\gamma\) from \(p\) to \(q\) in the chosen orientation of \(\gamma\) and \(\ell(p, q)\) is always non-negative. Note also that with our definition \(\ell\) is not symmetric but satisfies,
+\begin{equation}
+\label{eq:ell_symmetry}
+\ell(q, p) = 2\pi L - \ell(p, q).
+\end{equation}
+The usual intrinsic distance between \(p\) and \(q\), denoted here by \(\tilde{\ell}(p, q)\), satisfies
+\[
+\tilde{\ell}(p, q) = \min\{\ell(p, q), \ell(q, p)\} = \min\{\ell(p, q), 2\pi L - \ell(p, q)\}.
+\]
+
+Let us also define
+\begin{equation}
+\label{eq:w}
+w(p, q) = \frac{\gamma(q) - \gamma(p)}{d(p,q)},
+\end{equation}
+the unit vector pointing from \(p\) to \(q\).
+
+\begin{lemma}
+\label{lem:distance_evolution}
+
+\begin{align*}
+\partial_t d_t(p, q) &= -\kappa_q \inpr{\nor_q}{w} + \kappa_p \inpr{\nor_p}{w} \\
+\partial_t \ell_t(p, q) &= - \int_p^q \kappa^2 ds \\
+\partial_t L &= - \int_{\gamma} \kappa^2 ds
+\end{align*}
+\end{lemma}
+
+\begin{proof}
+From the flow equation \eqref{eq:flow}, we obtain
+\[
+\begin{split}
+\partial_t \inpr{\gamma(q) - \gamma(p)}{\gamma(q) - \gamma(p)} &= 2 \inpr{-\kappa(q) \nor(q)}{\gamma(q) - \gamma(p)} \\
+&\quad  - 2 \inpr{-\kappa(p) \nor(p)}{\gamma(q) - \gamma(p)}.
+\end{split}
+\]
+The evolution of \(d = \left(\inpr{\gamma(q) - \gamma(p)}{\gamma(q) - \gamma(p)}\right)^{1/2}\) follows by the chain rule and the definition of \(w\).
+
+Using the evolution of \(ds\) from Lemma \ref{lem:basic_evolution},
+\[
+\partial_t \ell(p,q) = \partial_t \int_p^q ds_t = -\int_p^q \kappa^2 ds
+\]
+\end{proof}
+
+\section{The chord arc profile}
+\label{sec:chordarc}
+
+In this section we introduce the chord-arc profile of a simple closed curve and derive some its properties. The results are particularly appealing for strictly convex curves. The discussion here is closely analogous to one found in \cite{Bryan} for the isoperimetric profile.
+
+\begin{defn}
+Let $\gamma$ be a smooth embedded, closed curve in the plane with total length $2\pi$ given by the embedding $X: \S^1 \to \R^2$. For $x\in [0,2\pi]$, the chord-arc profile of $\gamma$ is defined as
+\[
+\chordarcprofile (x) = \frac{2\pi}{L} \inf\left\{d(p, q): (p,q) \in \S^1\times\S^1, \ell(p,q) = \frac{L}{2\pi} x\right\}
+\]
+where $d(p,q) = \abs{X(p) - X(q)}$ is the \emph{extrinsic} distance in $\R^2$ between $p$ and $q$ and $\ell(p,q) = \int_p^q ds$ is the oriented intrinsic distance from $p$ to $q$ as in \Cref{defn:dist}. With this definition, from the symmetry of \(\ell\) in equation \eqref{eq:ell_symmetry}, we see that $\chordarcprofile$ is symmetric about $\pi$.
+\end{defn}
+
+\begin{rem}
+By definition, the chord-arc profile is scale invariant and defined on a uniform interval \([0, 2\pi]\) independently of \(\gamma\). This allows us to compare the profile of different curves. The constant \(2\pi\) is chosen for convenient comparison with the unit circle. Scale invariance also helps act as a guide throughout the computations - everything we do must be scale invariant!
+\end{rem}
+
+\begin{rem}
+By compactness of $\S^1\times \S^1$ (which parametrises the set of connected arcs of $\gamma$) and continuity of $\ell$, $d$, for any $x$, the infimum is attained so that there exists $(p_0,q_0) \in \S^1 \times \S^1$ with $\ell(p_0, q_0) = x$ and such that $\chordarcprofile(x) = d(p_0, q_0)$. Also, since $\ell(p,p) = 0$, for any $x\in(0,2\pi)$ we have $p_0 \ne q_0$ and so $d$ is smooth at $(p_0, q_0)$.
+\end{rem}
+
+The next proposition gives the asymptotic behaviour of the chord-arc profile near the end point $x=0$, and so by symmetry also at the end point $x=2\pi$. Note also the scale invariance.
+
+\begin{prop}
+As $x\to 0$ the chord-arc profile satisfies
+\[
+\lim_{x\to 0} \frac{\chordarcprofile(x) - x}{x^3} = - \frac{L}{96\pi^2} \sup_{\S^1} \kappa^2.
+\]
+\end{prop}
+
+\begin{proof}
+Parametrise $\gamma$ by arc-length. As in \cite{MR2794630}, 
+\[
+d(s_1, s_2) = \ell(s_1,s_2) - \frac{\kappa(s_1)^2}{24} \ell(s_1,s_2)^3 + \bigo(\ell(s_1, s_2)^4)
+\]
+where the constant in the $\bigo$ term is bounded independently of $s_1,s_2$.
+
+In particular, letting $s_{\max}$ be such that $\sup_s \kappa^2(s) = \kappa^2(s_{\max})$ we obtain
+\[
+\frac{d\left(s_{\max}, s_{\max} + \frac{L}{2\pi} x\right) - \frac{L}{2\pi}x}{\left(\tfrac{L}{2\pi}\right)^3 x^3} = -\frac{\sup \kappa^2}{24} + \bigo(x^4)
+\]
+since $\ell\left(s_{\max}, s_{\max} + \frac{L}{2\pi} x\right) = \abs{s_{\max} + \frac{L}{2\pi} x - s_{\max}} = \frac{L}{2\pi} x$.
+
+Now let $(s_1(x), s_2(x))$ be such that $\chordarcprofile(x) = \frac{2\pi}{L} d(s_1(x), s_2(x))$ and $\ell(s_1(x), s_2(x)) = \frac{L}{2\pi} x$. Then $\ell(\left(s_{\max}, s_{\max} + \tfrac{L}{2\pi} x\right) = \ell(s_1(x), s_2(x))$ and hence
+\[
+\begin{split}
+0 &\leq \frac{2\pi}{L}d\left(s_{\max}, s_{\max} + \frac{L}{2\pi}x\right) - \chordarcprofile(x) \\
+&= \frac{2\pi}{L}d\left(s_{\max}, s_{\max} + \frac{L}{2\pi}x\right) - \frac{2\pi}{L} d(s_1(x), s_2(x)) \\
+&= \left(\frac{L}{2\pi}\right)^2 \frac{\kappa(s_1(x))^2 - \sup \kappa^2}{24} x^3 + \bigo(x^4).
+\end{split}
+\]
+Since $\kappa(s_1(x))^2 < \sup \kappa^2$, the inequality ensures that $\kappa(s_1(x))^2 \to \sup \kappa^2$ as $x\to 0$ which gives the proposition.
+\end{proof}
+
+The main techniques we employ in this paper to understand the chord-arc profile are variational and we begin with the first and second variations of the geometric quantities $d$ and $\ell$. The derivation is fairly standard these days, but we give the full details here to be complete. It will prove useful to make various definitions that will feature throughout this paper.
+
+Let $\theta(p,q)$ denote the angle between $\tang_{p}$ and $w = (1/d)(X(q) - X(p))$ so that $\inpr{w}{\tang_p} = \cos\theta$. Define the following "indicator" functions,
+\begin{align*}
+\xi(p, q) &= \begin{cases}
+1,& \tang_{p} \ne \tang_{q} \\
+0,& \tang_{p} = \tang_{q}
+\end{cases} \\
+\intertext{and}
+\delta(p, q) &= \begin{cases}
+1,& \inpr{w}{\nor_{p}} > 0 \\
+0,& \inpr{w}{\nor_{p}} < 0.
+\end{cases}
+\end{align*}
+Also define the matrices
+\begin{align*}
+K(p,q) &= (-1)^{\delta}\begin{pmatrix}
+\kappa_{p} & 0 \\
+0 & (-1)^{\xi +1} \kappa_{q}
+\end{pmatrix} \\
+M_{\pm} &= \begin{pmatrix}
+1 & \pm 1 \\
+\pm 1 & 1 
+\end{pmatrix}
+\end{align*}
+and
+\[
+M(p,q) = \begin{cases}
+M_+,& \xi(p,q) = 1 \\
+M_-,& \xi(p,q) = 0.
+\end{cases}
+\]
+We think of $K$, $M_+$ and $M_-$ as linear operators acting on $T(\S^1\times\S^1)$ written with respect to the basis $\{\tang_p, \tang_q\}$. Observe that $M_+$ and $M_-$ are simultaneously diagonalised by the eigenvectors 
+\begin{equation}
+\label{eq:eigenvectors}
+v_1 = \tang_{p} + \tang_{q}, \quad v_2 = \tang_{p} - \tang_{q}
+\end{equation}
+with corresponding eigenvalues
+\begin{equation}
+\label{eq:eigenvalues}
+\begin{split}
+\lambda^+_1 &= \lambda^-_2 = 2 \\
+\lambda^+_2 &= \lambda^-_1 = 0.
+\end{split}
+\end{equation} 
+
+\begin{prop}[Spatial Variation]
+\label{prop:spatial_var}
+Let $(p_0, q_0) \in \S^1 \times \S^1$ be such that $d(p_0, q_0)$ is minimum amongst all $(p,q)$ such that $\ell(p, q) = \ell(p_0, q_0)$ (or more briefly, $\chordarcprofile(\ell(p_0,q_0)) = d(p_0, q_0)$), then 
+\[
+D^2d_{(p_0,q_0)} =  \sqrt{1-\cos^2\theta}K + \frac{1-\cos^2 \theta}{d} M.
+\]
+\end{prop}
+
+\begin{proof}
+Let us begin by deriving variational formulae for $d$ and $\ell$ without constraint. Let $\omega_p$ and $\omega_q$ denote the $1$-forms dual to the unit tangent vectors $\tang_p$ and $\tang_q$ at $p$ and $q$ respectively. Parametrise $\gamma$ by arc-length, so that $\partial_p \ell = - 1$ and $\partial_q \ell = 1$ which gives 
+\begin{equation}
+\label{eq:l_first_var}
+D\ell = -\omega_p + \omega_q.
+\end{equation}
+
+Next, differentiating $d$ and using $\partial_pX = \tang_p$, $\partial_qX = \tang_q$, the unit tangents at $p$ and $q$ respectively, gives
+\[
+\partial_p d (p, q) = \frac{1}{d} \inpr{\partial_p(X(q) - X(p))}{X(q) - X(p)} = -\inpr{w}{\tang_p}
+\]
+and similarly for $\partial_q d$ (but with the sign changed) so that
+\begin{equation}
+\label{eq:d_first_var}
+Dd = -\inpr{w}{\tang_p} \omega_p + \inpr{w}{\tang_q} \omega_q.
+\end{equation}
+
+For the second variation, we first differentiate $w$:
+\[
+\begin{split}
+\partial_p w &= \partial_p \frac{1}{d} (X(q) - X(p)) \\
+&= \frac{1}{d^2} \inpr{w}{\tang_p} (X(q) - X(p)) - \frac{1}{d} \tang_p \\
+&= -\frac{1}{d}\left(\tang_p - \inpr{w}{\tang_p} w\right).
+\end{split}
+\]
+and similarly for $\partial_q w$ (again with the sign changed).  Putting this together with the Frenet-Serret formula $\partial_p T_p = -\kappa_p \nor_p$ (the $-$ coming from our choice of outer unit normal and the convention that convex curves have positive curvature) then gives
+\[
+d_{pp} = \inpr{\frac{1}{d}\left(\tang_p - \inpr{w}{\tang_p} w\right)}{\tang_p} + \inpr{w}{\kappa_p \nor_p} = \frac{1}{d}\left(1 - \inpr{w}{\tang_p}^2\right) + \inpr{w}{\kappa_p \nor_p}.
+\]
+Similar computations give $d_{qq}$ and $d_{pq}$ leading to
+\begin{equation}
+\label{eq:d_second_var}
+\begin{split}
+D^2d &= \left(\inpr{w}{\kappa_p \nor_p} + \frac{1}{d}(1 - \inpr{w}{\tang_p}^2) \right) \omega_p \otimes \omega_p \\
+&+ \left(-\inpr{w}{\kappa_q \nor_q} + \frac{1}{d}(1 - \inpr{w}{\tang_q}^2) \right) \omega_q \otimes \omega_q \\
+&- \left(\frac{1}{d}\left(\inpr{\tang_p}{\tang_q} - \inpr{w}{\tang_p}\inpr{w}{\tang_q}\right) \right) \left(\omega_p \otimes \omega_q + \omega_q \otimes \omega_p\right).
+\end{split}
+\end{equation}
+
+Now, consider the curve $\alpha: u \mapsto (p_0,q_0) + uv_1 = (p_0,q_0) + (u, u) \in \S^1\times \S^1$ which satisfies,
+\[
+\partial_u \ell(\alpha(u)) = 0 
+\]
+by equation \eqref{eq:l_first_var}. Thus $\ell$ is constant, equal to $\ell(p_0, q_0)$ along the curve $\alpha$. 
+
+Since $(p_0, q_0)$ minimises $d$ amongst all $(p,q)$ with $\ell(p, q) = \ell(p_0, q_0)$, we have that $u=0$ is a local minima of the function $u\mapsto d(\alpha(u))$. Then from the first variation of $d$ \eqref{eq:d_first_var},
+\[
+0 = \left.\partial_u\right|_{u=0} d(\alpha(u)) = -\inpr{w}{\tang_p} + \inpr{w}{\tang_q}
+\]
+so that
+\[
+\cos\theta = \inpr{\tang_p}{w} = \inpr{\tang_q}{w}.
+\]
+Thus either $\tang_{p_0} = \tang_{q_0}$, or $\tang_{p_0} \ne \tang_{q_0}$ and $w$ bisects $\tang_{p_0}$ and $\tang_{q_0}$. These cases are recorded by the indicator function $\xi$ equal to \(0\) in the first case and \(1\) in the second. Moreover we have $\inpr{w}{\nor_{p_0}} = \inpr{w}{\nor_{q_0}}$ if \(\xi = 0\) and $\inpr{w}{\nor_{p_0}} = -\inpr{w}{\nor_{q_0}}$ if \(\xi=1\) so that in either case, $\inpr{w}{\nor_{p_0}} = (-1)^{\xi + 1} \inpr{w}{\nor_{q_0}}$. We can also deduce that $\inpr{w}{\nor_{p_0}} = \pm \sqrt{1-\cos^2\theta}$ with the sign depending on whether $w$ points into or out of $\gamma_{t_0}$ at $p_0$ which we can then write as
+\[
+\inpr{w}{\nor_{p_0}} = (-1)^\delta \sqrt{1-\cos^2\theta}.
+\]
+Succinctly, we have
+\begin{equation}
+\label{eq:Nw}
+(-1)^{\xi+1} \inpr{w}{\nor_{q_0}} = \inpr{w}{\nor_{p_0}} =  (-1)^\delta \sqrt{1-\cos^2\theta}.
+\end{equation}
+
+\emph{Case 1}: $\tang_{p_0} \ne \tang_{q_0}$ ($\xi = 1$).
+
+Since $w$ bisects $\tang_{p_0}$ and $\tang_{q_0}$, applying the double angle formula, we also have 
+\[
+\inpr{\tang_{p_0}}{\tang_{q_0}} = 2\cos^2\theta - 1.
+\]
+Substituting this expression and equation \eqref{eq:Nw} into the second variation of $d$ \eqref{eq:d_second_var} gives
+\begin{align*}
+D^2d_{(p_0,q_0)} &=  \left((-1)^{\delta} \sqrt{1-\cos^2\theta}\kappa_{p_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{p_0} \otimes \omega_{p_0} \\
+&+ \left((-1)^{\delta} \sqrt{1-\cos^2\theta} \kappa_{q_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{q_0} \otimes \omega_{q_0} \\
+&+ \left(\frac{1}{d}(1 - \cos^2\theta) \right) \left(\omega_{p_0} \otimes \omega_{q_0} + \omega_{q_0} \otimes \omega_{p_0} \right)
+\end{align*}
+which gives the desired expression for $\xi=0$ when expressed in matrix form.
+
+\emph{Case 2}: $\tang_{p_0} = \tang_{q_0}$ ($\xi = 1$).
+
+In this case, we have $\inpr{\tang_{p_0}}{\tang_{q_0}} = 1$. Substituting this and equation \eqref{eq:Nw} into the second variation of $d$ \eqref{eq:d_second_var} gives
+\begin{align*}
+D^2d_{(p_0,q_0)} &=  \left((-1)^{\delta} \sqrt{1-\cos^2\theta}\kappa_{p_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{p_0} \otimes \omega_{p_0} \\
+&+ \left(-(-1)^{\delta} \sqrt{1-\cos^2\theta} \kappa_{q_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{q_0} \otimes \omega_{q_0} \\
+&- \left(\frac{1}{d}(1 - \cos^2\theta) \right) \left(\omega_{p_0} \otimes \omega_{q_0} + \omega_{q_0} \otimes \omega_{p_0} \right)
+\end{align*}
+which gives the desired expression for $\xi=1$ when expressed in matrix form.
+
+\end{proof}
+
+The next lemma gives a useful first application of the first variation formula for $d$ that allows us to exploit concavity properties of the chord-arc profile. 
+
+\begin{lemma}
+\label{lem:concave_barrier}
+If there exists a strictly concave, positive function $\phi: (0, 2\pi) \to \R$ that is symmetric about $\pi$ and supporting $\chordarcprofile$ at $x_0= \tfrac{2\pi}{L} \ell(p_0,q_0)$ (so that $\phi(x) \leq \chordarcprofile(x)$ and $\phi(x_0)=\chordarcprofile(x_0)$), then $\tang_{p_0} \ne \tang_{q_0}$.
+\end{lemma}
+
+\begin{rem}
+In particular, if $\gamma$ is strictly convex, then already \(T=\tang_{p_0} \ne \tang_{q_0}\) whenever \(p_0 \ne q_0\). The lemma then says that the in the presence of a concave lower barrier, we obtain the same conclusion and we see this \emph{local concavity} of the profile gives convex like behaviour of the corresponding point. \Cref{prop:barrier} below gives a converse where convexity of the curve implies concavity of the profile. Thus we see a close relationship between convexity of the curve and concavity of the profile (even in a local sense).
+\end{rem}
+
+\begin{proof}
+Suppose there is a $\phi$ as in the statement of the lemma. We proceed as described in \cite{MR2794630}. To obtain a contradiction, let us suppose that $\tang_{p_0} = \tang_{q_0} \ne w$. Then the normal makes an acute angle with the chord $\overline{p_0 q_0}$ at one endpoint, and an obtuse angle at the other. Therefore points on the chord near one endpoint are inside the region enclosed by $\gamma$, while points near the other endpoint are outside, implying that there is at least one other point where the curve $\gamma$ meets the chord. We may assume that an intersection occurs at $s$ with $p_0 < s < q_0$. Then we have
+\begin{align*}
+d(p_0, q_0) &= d(p_0, s) + d(s, q_0) \\
+\ell(p_0, q_0) &= \min\{\ell(p_0, s) + \ell(s, q_0),  2\pi -\ell(p_0,s ) - \ell(s, q_0)\}.
+\end{align*}
+Since $\phi$ is strictly concave, $\phi(x + y) = \phi(x + y) + \phi(0) \leq \phi(x) + \phi(y)$ whenever $x, y > 0$ and $x + y < 2\pi$. Writing
+\[
+x_0 = \tfrac{2\pi}{L}\ell(p_0, q_0), \quad x_1 = \tfrac{2\pi}{L}\ell(p_0, s), \quad x_2 = \tfrac{2\pi}{L}\ell(s, q_0)
+\]
+and noting also that $\phi(x) = \phi(2\pi - x)$, we have
+\[
+\begin{split}
+0 &= \chordarcprofile(x_0) - \phi(x_0) =  \frac{2\pi}{L} d(p_0, q_0) - \phi(x_0) \\
+&= \frac{2\pi}{L}d(p_0, s) + \frac{2\pi}{L} d(s, q_0) - \phi(x_1 + x_2) \\
+&> \frac{2\pi}{L} d(p_0, s) - \phi(x_1) + \frac{2\pi}{L}d(s, q_0) - \phi(x_2) \\
+&\geq \chordarcprofile(x_1) - \phi(x_1) + \chordarcprofile(x_2) - \phi(x_2) \\
+&\geq 0.
+\end{split}
+\]
+Thus we have a contradiction. 
+\end{proof}
+
+Next, from these variational formulae, we obtain a (weak) differential inequality for $\chordarcprofile$.
+
+\begin{prop}
+\label{prop:barrier}
+The chord-arc profile $\chordarcprofile$ satisfies the following differential inequality in the support (or barrier, or sometimes Calabi) sense
+\begin{align*}
+Z'_- &\leq \cos\theta \leq Z'_+, \\
+Z'' &\leq \frac{(-1)^{\delta}\sqrt{1-\cos^2\theta}}{4} (\kappa_{p_0} + (-1)^{\xi+1}\kappa_{q_0}) + (1-\xi) \frac{1-\cos^2\theta}{d(p_0,q_0)}.
+\end{align*}
+In particular, if $\gamma$ is convex, then $\chordarcprofile$ is concave and if $\gamma$ is strictly convex, then $\chordarcprofile$ is strictly concave.
+\end{prop}
+
+Recall that the support inequality means for every $x_0 \in [0,2\pi]$ there exists a smooth function $Z$ defined in a neighbourhood of $x_0$ such that $Z(x) \geq \chordarcprofile$, $Z(x_0) = \chordarcprofile(x_0)$ and
+\begin{align*}
+Z' &= \cos \theta, \\
+Z'' &= \frac{(-1)^{\delta}\sqrt{1-\cos^2\theta}}{4} (\kappa_{p_0} + (-1)^{\xi+1}\kappa_{q_0}) + (1-\xi) \frac{1-\cos^2\theta}{d(p_0,q_0)}.
+\end{align*}
+
+\begin{proof}
+For any $x_0$, again let $(p_0,q_0)$ be such that $\ell(p_0,q_0) = x_0$ and $\chordarcprofile(x_0) = d(p_0,q_0)$. Consider the curve
+\[
+\alpha(u) = (p_0, q_0) + uv_2 = (p_0, q_0) + u(1,-1).
+\]
+This satisfies
+\[
+\partial_u \ell(\alpha(u)) = -2
+\]
+so that $\ell\circ\alpha$ has a smooth local inverse near $u=0$. Thus we can define the smooth function
+\[
+Z(x) = d(\alpha((\ell\circ\alpha)^{-1} (x)))
+\]
+which satisfies
+\begin{align*}
+Z(x_0) &= d(p_0, q_0) = \chordarcprofile(x_0) \\
+\intertext{and}
+Z(x) &= d(\alpha((\ell\circ\alpha)^{-1} (x))) \geq \chordarcprofile ((\ell\circ\alpha)^{-1} (x)) = \chordarcprofile(x).
+\end{align*}
+
+Observe that $\alpha' = v_2$ and
+\[
+\partial_x (\ell\circ\alpha)^{-1} = -\frac{1}{2}.
+\]
+Therefore, using also the first variation of $d$ \eqref{eq:d_first_var}, we have
+\[
+Z'(x_0) = Dd \cdot \left(-\frac{1}{2}v_2\right) = -\frac{1}{2} \cos\theta (-\omega_{p_0} + \omega_{q_0}) \cdot (\tang_{p_0} - \tang_{q_0}) = \cos\theta
+\]
+proving the first equation.
+
+For the second equation, we have
+\[
+Z''(x_0) = D^2 d \cdot \left(-\frac{1}{2} v_2\right)
+\]
+thinking of $D^2 d$ as a quadratic form. Now apply Proposition \ref{prop:spatial_var} to obtain
+\[
+Z''(x_0) = \sqrt{1-\cos^2\theta} K\cdot \left(-\frac{1}{2} v_2\right) + \frac{1-\cos^2\theta}{d} M \cdot \left(-\frac{1}{2} v_2\right).
+\]
+For the first term we have
+\begin{align*}
+\sqrt{1-\cos^2\theta} K \cdot \left(-\frac{1}{2} v_2\right) &= \frac{\sqrt{1-\cos^2\theta}}{4} (-1)^{\delta} 
+\begin{pmatrix}
+1 & -1
+\end{pmatrix}
+\begin{pmatrix}
+\kappa_{p_0} & 0 \\
+0 & (-1)^{\xi + 1} \kappa_{q_0}
+\end{pmatrix}
+\begin{pmatrix}
+1 \\
+-1
+\end{pmatrix} \\
+&= \frac{\sqrt{1-\cos^2\theta}}{4} (-1)^{\delta} (\kappa_{p_0} + (-1)^{\xi + 1} \kappa_{q_0})
+\end{align*}
+which is the first term in the second equation of the proposition.
+
+For the second term, we treat the two cases $\xi=1$ and $\xi=0$ separately. In the first case, we just observe that $v_2$ is a null eigenvector of $M=M_+$ so that the second term vanishes when $\xi=1$. 
+
+For case two, we have $M=M_-$ and we can't apply the same trick to kill the second term, since this would require we use the null eigenvector $v_1$ of $M_-$ in the definition of the curve $\alpha$. But recall that from the proof of Proposition \ref{prop:spatial_var}, $v_1$ is annihilated by $d\ell$ and so we can't invert $\ell\circ\alpha$ in this situation. Instead, we make do again with using $v_2$, which has length $\sqrt{2}$ and is an eigenvector of $M_-$ with eigenvalue $2$ so that $M_- (v_2) = 4$ which leads to the required second term when $\xi=0$.
+
+Finally, if $\gamma$ is convex, then $\kappa \geq 0$ and $\tang_{p_0} \ne \tang_{q_0}$ so that $\xi = 1$. Moreover, since the closure of the region bounded by $\kappa$ is a convex body, and since $X(p_0), X(q_0)$ lie in the closure of this region, for any $u \in [0,1]$, we must have that $X(p_0) + u(X(q_0) - X(p_0))$ also lies in this region so that $(X(q_0) - X(p_0))$ (and hence $w = \tfrac{1}{d(p_0,q_0)} (X(q_0) - X(p_0))$) points inward ensuring that $\delta = 1$. Therefore, at every point $x_0$, the function $Z$ satisfies
+\[
+Z'' \leq - \frac{\sqrt{1-\cos^2 \theta}}{4} (\kappa_{p_0} + \kappa_{q_0}) \leq 0
+\]
+and $\chordarcprofile$ is everywhere supported above by a concave function, hence is itself concave \cite{MR1674097}.
+\end{proof}
+
+\begin{rem}
+Compare the above with similar results obtained in \cite{MR1674097}, pertaining to isoperimetric regions of convex bodies in Euclidean space and in \cite{MR875084}, pertaining to isoperimetric regions in compact surfaces. As described in \cite{pbthesis}, both arguments lead to the concavity of $I^2(x) + K_0 x^2$ where $I$ is the isoperimetric profile, and $K_0$ is a lower bound on boundary mean curvature or ambient Gauss curvature respectively. In particular, if the curvature is non-negative, then not only is the isoperimetric profile concave, but it's square also. Here, the analogous result is not true for the chord-arc profile in the strongest possible sense as seen by the simple counter-example of the unit circle, whose chord-arc profile is 
+\[
+\chordarcprofile_{\S^1} (x) = 2 \sin \left(\frac{x}{2}\right).
+\]
+This is a strictly concave function whose square is not concave. This seems related to the fact that the local behaviour of the chord-arc profile is determined by $\kappa^2$ as opposed to the isoperimetric profile of a surface or convex body in the plane, which is locally determined by the Gauss curvature or boundary mean curvature as appropriate. The difference is that for the chord-arc profile the sign of the curvature is irrelevant.
+\end{rem}
+
+To end this section, we derive a viscosity equation for the chord-arc profile of $\gamma$. In the next section, we couple this with time variations to obtain a viscosity equation for the chord-arc profile of a simple closed curve evolving by the flow \ref{eq:flow} which forms the basis of the comparison theorem \ref{thm:comparison}. 
+
+\begin{thm}
+\label{thm:spatial_viscosity}
+Let $(p_0,q_0)$ be points such that $d(p_0, q_0) = \chordarcprofile(\ell(p_0, q_0))$. The chord-arc profile $\chordarcprofile$ of a smooth, simple, closed curve satisfies the following inequality in the viscosity-sense:
+\[
+-4Z'' + 4(1-\xi(p_0,q_0)) \frac{1 - (Z')^2}{Z} \geq (-1)^{\delta(p_0,q_0)+1} \sqrt{1 - (Z')^2} \left[\kappa_{p_0} + (-1)^{1+\xi(p_0,q_0)} \kappa_{q_0}\right].
+\]
+\end{thm}
+
+This means that for any $x_0 \in (0,2\pi)$, if $Z$ is a smooth lower supporting function at $x_0$, i.e. $Z$ is defined in a neighbourhood of $x_0$ such that $Z(x_0) = \chordarcprofile (x_0)$ and $Z(x) \leq \chordarcprofile (x)$, then $Z$ satisfies the inequality in the usual sense.
+
+\begin{proof}
+Fix $x_0 \in (0,2\pi)$. Let $Z(x)$ be a smooth function defined in neighbourhood of $x_0$ and such that $Z(x_0) = \chordarcprofile(x_0)$ and $Z(x) \leq \chordarcprofile(x)$. Choose $(p_0,q_0)$ with $p_0\ne q_0$ so that $\ell(p_0, q_0) = x_0$ and $\chordarcprofile(x_0) = d(p_0, q_0)$.  Then we have $d(p, q) \geq \chordarcprofile(\ell(p, q)) \geq Z(\ell(p, q))$ for all $(p,q)$ in an open neighbourhood of $(p_0,q_0)$ small enough so that $Z$ is defined for all $x=\ell(p,q)$. Moreover, we have equality at $(p_0, q_0)$ so that the smooth function $\Phi(p, q) = d(p,q) - Z(\ell(p, q))$ satisfies
+\[
+D \Phi = 0, \quad D^2\Phi \geq 0
+\]
+at $(p_0, q_0)$.
+
+From the vanishing at $(p_0,q_0)$ of $D\Phi$ applied to $\tang_{p_0}$ and $\tang_{q_0}$ in turn, and from the first variation of $d$ \eqref{eq:d_first_var}, we obtain
+\begin{equation}
+\label{eq:vanishing_first_var}
+Z' = \inpr{w}{\tang_{p_0}} = \inpr{w}{\tang_{q_0}} = \cos\theta.
+\end{equation}
+
+Using Proposition \ref{prop:spatial_var} then gives the inequality
+\begin{equation}
+\label{eq:matrix_inequality}
+\begin{split}
+0 &\leq D^2\Phi_{(p_0,q_0)} = D^2 d_{(p_0,q_0)} - Z'' D\ell\otimes D\ell \\
+&= \sqrt{1 - (Z')^2(x_0)} K(p_0,q_0) + \frac{1-(Z')^2(x_0)}{Z(x_0)} M (p_0,q_0) - Z''(x_0) M_-.
+\end{split}
+\end{equation}
+
+Again, we consider the two cases, $\xi=1$ and $\xi=0$.
+
+\emph{Case 1} $\xi=1$:
+
+In this case $M=M_+$ and we apply the inequality \eqref{eq:matrix_inequality} to $v_2 = \tang_{p_0} - \tang_{q_0}$, the null eigenvector of $M_+$, to obtain
+\[
+0 \leq (-1)^{\delta} \sqrt{1 - (Z')^2(x_0)} (\kappa_{p_0} + \kappa_{q_0}) - 4Z''
+\]
+which is the required inequality when $\xi=1$.
+
+\emph{Case 2} $\xi=0$:
+
+In this case $M=M_-$, but applying inequality \eqref{eq:matrix_inequality} to $v_1 = \tang_{p_0} + \tang_{q_0}$, the null eigenvector of $M_-$, effectively cancels out all the $Z$ terms which is of no use to us. So instead we use the eigenvector $v_1$ once more to obtain
+\[
+0 \leq (-1)^{\delta} \sqrt{1 - (Z')^2(x_0)} (\kappa_{p_0} - \kappa_{q_0}) + 4\frac{1-(Z')^2(x_0)}{Z(x_0)} -4Z''
+\]
+which is the required inequality when $\xi=0$.
+\end{proof}
+
+\section{The evolving chord arc profile}
+\label{sec:evolving_chordarc}
+
+The comparison theorem is a direct corollary - essentially as an application of the maximum principle - of the following theorem describing a viscosity equation for the chord-arc profile:
+
+\begin{thm}
+\label{thm:viscosity}
+Let $X: \S^1\times [0,T)$ be a solution of the flow \eqref{eq:flow}. For any $(x,t) \in (0,2\pi)\times (0, T)$, let $(p_0,q_0) \in \S^1\times\S^1$ be such that $\ell(p_0,q_0, t_0) = x$ and $\chordarcprofile(x, t) = d(X(p_0, t), X(q_0, t))$. The chord-arc profile is a viscosity super-solution of the following equation
+\[
+\partial_tZ - 4 \xi(p_0, q_0) Z'' + 4(1-\xi(p_0,q_0)) \frac{1 - (Z')^2}{Z} - Z' \int_{p_0}^{q_0} \kappa^2 ds \geq 0.
+\]
+\end{thm}
+
+Recall that this means that for any $(x_0,t_0) \in (0,2\pi)\times [0,T)$, if $Z$ is a smooth function defined in a neighbourhood of $(x_0,t_0)$ such that
+1. $Z(x_0, t_0) = \chordarcprofile (x_0, t_0)$
+2. $Z(x, t) \leq \chordarcprofile (x, t)$, $t\leq t_0$
+then $Z$ satisfies the inequality in the usual sense. Note that although we require $Z$ to support $\chordarcprofile$ for $x$ in a full neighbourhood of $x_0$, we only require $t$ to be in a "half-neighbourhood", i.e. $t\leq t_0$.
+
+\begin{proof}
+Fix $(x_0,t_0) \in (0,2\pi) \times [0,T)$. Let $Z(x,t)$ be a smooth function defined in an open neighbourhood of $(x_0,t_0)$ and such that $Z(x_0, t_0) = \chordarcprofile(x_0, t_0)$ and $Z(x, t) \leq \chordarcprofile(x, t)$ for $t\leq t_0$. By compactness, we can choose $(p_0,q_0)$ so that $\ell(p_0, q_0, t_0) = x_0$ and $\chordarcprofile(x_0, t_0) = d(p_0, q_0, t_0)$.  Then we have
+\[
+d(p, q, t) \geq \chordarcprofile(\ell(p, q, t), t) \geq Z(\ell(p, q, t), t)
+\]
+for $t\leq t_0$ and all $(p,q,t)$ in a neighbourhood of $(p_0,q_0,t_0)$ on which $Z$ is defined for all $x=\ell(p,q,t)$. Moreover, we have equality at $(p_0, q_0, t_0)$ so that the smooth function $\Phi(p, q, t) = d(p,q,t) - Z(\ell(p, q, t), t)$ satisfies
+\[
+\partial_t \Phi \leq 0
+\]
+at $(p_0, q_0, t_0)$. That is, using the time variation formula from \Cref{lem:distance_evolution}, at \((p_0, q_0, t_0)\),
+\[
+0 \geq \partial_t d - \partial_t (Z(\ell, t)) = -\kappa_q \inpr{\nor_q}{w} + \kappa_p \inpr{\nor_p}{w} + Z' \int_p^q \kappa^2 ds - \partial_t Z.
+\]
+
+By assumption, \(d_{t_0} (p_0, q_0)\) is minimised amongst all \((p, q)\) such that \(\ell_{t_0}(p, q) = \ell_{t_0}(p_0, q_0)\) and so we may use equation \eqref{eq:Nw} obtained for $\inpr{w}{\nor_{p_0}}$ and $\inpr{w}{\nor{q_0}}$ in the proof of \Cref{prop:spatial_var}:
+\[
+(-1)^{\xi+1} \inpr{w}{\nor_{q_0}} = \inpr{w}{\nor_{p_0}} =  (-1)^\delta \sqrt{1-\cos^2\theta}.
+\]
+and hence
+\begin{equation}
+\label{eq:time_ineq}
+0 \geq (-1)^\delta \sqrt{1-\cos^2\theta} [(-1)^{1+\xi}\kappa_q + \kappa_p] + Z' \int_p^q \kappa^2 ds - \partial_t Z.
+\end{equation}
+
+On the other hand, at $t=t_0$, the function $Z(-, t)$ is a lower support function of $\chordarcprofile$ at $x_0$ and so we can appeal to Theorem \ref{thm:spatial_viscosity} which says
+\[
+-4Z'' + 4(1-\xi(p_0,q_0)) \frac{1 - (Z')^2}{Z} \geq (-1)^{\delta+1} \sqrt{1 - (Z')^2} \left[\kappa_{p_0} + (-1)^{1+\xi} \kappa_{q_0}\right].
+\]
+Combining this with equation \eqref{eq:time_ineq} and noting that \Cref{prop:barrier} gives \(Z' = \cos\theta\) completes the proof.
+\end{proof}
+
+\section{Comparison Theorem}
+\label{sec:comparison}
+
+\begin{thm}
+\label{thm:comparison}
+Let \(\Phi : [0, 2\pi] \times [0, \infty) \to \R\) be a concave function symmetric about \(\pi\) with \(\Phi(0, t) = \Phi(2\pi, t) = 0\) for all \(t \geq 0\) and such that
+\[
+\partial_t \Phi \geq .
+\]
+Define the function,
+\[
+\varphi(x, t) = \Phi()
+\]
+
+If \(\varphi (x, 0) \leq \chordarcprofile(x, 0)\) for all \(x \in (0, 2\pi)\) then \(\varphi (x, t) \leq \chordarcprofile(x, t)\) for all \(x \in (0, 2\pi)\) and \(t \geq 0\).
+\end{thm}
+
+\begin{proof}
+Let $\phi$ be as in the theorem. By assumption, $\phi(x, 0) < \chordarcprofile(x, 0)$ for $x\in (0,2\pi)$ and the asymptotic behaviour of $\phi$ and $\chordarcprofile$ near the endpoints $0,2\pi$ ensures that $\phi(x, t) < \chordarcprofile(x, t)$ for $x$ sufficiently near $0$ or $2\pi$. Then if the theorem is false, there must be a first time $t_0>0$ and an $x_0\in(0,2\pi)$ such that $\phi(x_0, t_0) = \chordarcprofile(x_0, t_0)$ and $\phi(x, t) \leq \chordarcprofile(x, t)$ for all $(x,t) \in [0,2\pi] \times [0, t_0]$. Thus at $(x_0,t_0)$, $\phi$ satisfies properties 1 and 2 in the definition of viscosity supersolutions above, and since $\phi$ is strictly concave, by lemma \ref{lem:concave_barrier}, $\tang_{p_0} \ne \tang_{q_0}$ and hence by Theorem \ref{thm:viscosity},
+\[
+\partial_t\phi - 2\sqrt{1 - (\phi')^2}f\left(\frac{2\phi''}{\sqrt{1-(\phi')^2}}\right) - \avg{\kappa^2} \left(\phi - \phi'\ell\right) - \phi' \int_{p_0}^{q_0} \kappa^2 ds \geq 0.
+\]
+contradicting the strict inequality from the assumptions on $\phi$ in the theorem.
+\end{proof}
+
+\section{Comparison Function}
+\label{sec:comparison_function}
+
+In this section, we seek suitable functions $\varphi_0$ satisfying the hypotheses of Theorem \ref{thm:comparison}. Our approach is to seek a one-parameter family $\varphi_c$ of such functions such that for any given curve there is a $c$ with $\varphi_c(x, 0) \leq \chordarcprofile(x, 0)$. Such functions are constructed as in \cite{MR2794630} by making a change of variables $x \mapsto \psi_0(x)$ where $\psi_0(x)$ is the profile of a self-similar solution to the flow while simultaneously changing the time parameter $\tau \mapsto e^{\tau}$. Then we seek a similarity solution of the resulting ODE. That is we make the ansatz,
+\[
+\varphi_0(x, \tau) = e^{\tau} \Phi(e^{-\tau} \psi_0(x)).
+\]
+
+\begin{thm}
+\label{thm:comparison_function}
+Let
+\[
+\Phi_c(u) = 
+\]
+and
+\[
+\varphi_c(x, \tau) = e^{\tau} \Phi_c(e^{-\tau} \psi_0(x))
+\]
+with $\psi_0$ a self-similar solution of the Network CSF with a single loop and $k$ nodes.
+
+Let $\gamma$ be a a solution of the network CSF such that
+\begin{enumerate}
+\item $\frac{L}{4\pi^2} \bar{Q} \geq \frac{L}{4\pi^2} \bar{Q}_0$, and
+\item $\frac{L}{2\pi} \Delta Q \geq \tfrac{1}{x} f_0(\varphi_c')$, where $\frac{L}{2\pi} \Delta Q_0 = \tfrac{1}{x} f_0(\psi_0')$.
+\end{enumerate}
+Then there exists a $c$ such that
+\[
+\varphi_c(x, \tau(t)) \leq \chordarcprofile(x, t)
+\]
+for every $x, t$. Moreover,
+\[
+\frac{L}{2\pi} \max_i \{\kappa^+(a_i, t) + \kappa^-(a_i, t)\} \leq 8 e^{-\tau(t)} (\psi_0')^2 \Phi_c'' + \psi_0'' \Phi_c'.
+\]
+\end{thm}
+
+\begin{proof}
+First, we claim that the hypotheses of the Comparison Theorem \ref{thm:comparison} will be satisfied if we can show that $\varphi_c$ satisfies the bulleted conditions of that theorem and that
+\begin{equation}
+\label{eq:self_similar_comparison}
+\partial_t \varphi_c \leq 4 \varphi_c'' + \frac{L}{4\pi^2} \bar{Q}_0 (\varphi_c - x\varphi_c') + \frac{1}{x} \varphi_c' f_0 (\varphi_c').
+\end{equation}
+To see why the claim holds, observe that the hypotheses of the theorem give
+\[
+\frac{L}{4\pi^2} \bar{Q}_0 (\varphi_c - x\varphi_c') + \frac{1}{x} \varphi_c' f_0 (\varphi_c') \leq \frac{L}{4\pi^2} \bar{Q} (\varphi_c - x\varphi_c') + \frac{L}{2\pi} \Delta Q \varphi_c'
+\]
+noting that concavity of $\varphi_c$, $\varphi_c(0) = 0$, the symmetry of $\varphi_c$ about $x=\pi$, and the non-negativity of $\varphi_c$ imply that for $x \in [0, \pi]$, $\varphi_c' \geq 0$ and $(\varphi_c - x \varphi_c') \geq 0$. The latter follows by observing that the function $f(x) = \varphi_c(x) - x \varphi_c'(x)$ satisfies $f(0) = 0$ and $f'(x) = -x \varphi_c''(x) \geq 0$.
+
+Thus we must verify equation \eqref{eq:self_similar_comparison}. Our ansatz gives
+\begin{align*}
+\partial_{\tau} \varphi_c &= e^{\tau} \left(\Phi_c - e^{-\tau} \psi_0 \Phi_c'\right) \\
+\varphi_c' &= \psi_0' \Phi_c' \\
+\varphi_c'' &= e^{-\tau} (\psi_0')^2 \Phi_c'' + \psi_0'' \Phi_c'.
+\end{align*}
+Substitution into equation \eqref{eq:self_similar_comparison} then requires
+\[
+e^{\tau} \left(\Phi_c - e^{-\tau} \psi_0 \Phi_c'\right) \leq 4 \left(e^{-\tau} (\psi_0')^2 \Phi_c'' + \psi_0'' \Phi_c'\right) + \frac{L}{4\pi^2} \bar{Q}_0 (e^{\tau} \Phi_c - x \psi_0' \Phi_c') + \frac{1}{x} f_0(\Phi_c' \psi_0') \Phi_c' \psi_0'.
+\]
+Rearranging, this is equivalent to
+\[
+\begin{split}
+0 &\leq 4 (e^{-\tau} \psi_0')^2 \Phi_c'' + \left(4\psi_0'' - \frac{L}{4\pi^2} \bar{Q}_0 x \psi_0' + \frac{1}{x} \psi_0'f_0(\Phi_c' \psi_0') \right) e^{-\tau} \Phi_c' + e^{-\tau} \psi_0 \Phi_c' + \frac{L}{4\pi^2} \bar{Q}_0 \Phi_c - \Phi_c \\
+&= 4 (e^{-\tau} \psi_0')^2 \Phi_c'' + \left(\frac{L}{4\pi^2} \bar{Q}_0 - 1\right) \left(\Phi_c - e^{-\tau} \psi_0 \Phi_c'\right) + \frac{1}{x} \left(f_0(\Phi_c' \psi_0') - f_0(\psi_0')\right) \psi_0' e^{-\tau} \Phi_c'\\
+&\quad + \left(4\psi_0'' + \frac{L}{4\pi^2} \bar{Q}_0 (\psi_0 - x \psi_0') + \frac{1}{x} \psi_0' f_0(\psi_0')\right) e^{-\tau} \Phi_c'.
+\end{split}
+\]
+The self-similar solution $\psi_0$ satisfies
+\[
+0 = \partial_t \psi_0 \leq 4\psi_0'' + \frac{L}{4\pi^2} \bar{Q}_0 (\psi_0 - x \psi_0') + \frac{1}{x} \psi_0' f_0(\psi_0').
+\]
+Thus it is sufficient to prove
+\[
+0 \leq 4 (e^{-\tau} \psi_0')^2 \Phi_c'' + \left(\frac{L}{4\pi^2} \bar{Q}_0 - 1\right) \left(\Phi_c - e^{-\tau} \psi_0 \Phi_c'\right) + \frac{1}{x} \left(f_0(\Phi_c' \psi_0') - f_0(\psi_0')\right) \psi_0' e^{-\tau} \Phi_c'.
+\]
+
+We make one final estimation linearising $f_0$ around the self similar solution: by taking a Taylor expansion around $\psi_0'$ with second order remainder, the concavity of $f_0$ implies the remainder is non-negative and hence
+\[
+f_0(\Phi_c' \psi_0') - f_0(\psi_0') \geq f_0'(\psi_0')(\Phi_c'\psi_0' - \psi_0') = \psi_0' f_0'(\psi_0')(\Phi_c' - 1).
+\]
+Let us also write $u = e^{-\tau} \psi_0$ for the argument to $\Phi_c$ so that we finally reduce to
+\begin{equation}
+\label{eq:Phi_ode}
+\begin{split}
+0 &\leq 4 (e^{-\tau} \psi_0')^2 \Phi_c'' + \frac{1}{x} \psi_0' f_0'(\psi_0')(\Phi_c' - 1) \psi_0' e^{-\tau} \Phi_c' \\
+&\quad + \left(\frac{L}{4\pi^2} \bar{Q}_0 - 1\right) \left(\Phi_c - u \Phi_c'\right) \\
+&= 4 e^{-\tau} \frac{(\psi_0')^2}{\psi_0} \left(u \Phi_c'' + \frac{1}{4x} \psi_0 f_0'(\psi_0')(\Phi_c' - 1) \Phi_c'\right) \\
+&\quad + \left(\frac{L}{4\pi^2} \bar{Q}_0 - 1\right) \left(\Phi_c - u \Phi_c'\right).
+\end{split}
+\end{equation}
+
+\textbf{What is needed next (see remark \ref{rem:smooth_case} below for how it works in the smooth case):}
+The concavity of $\Phi_c$ implies $\left(\Phi_c - u \Phi_c'\right) \geq 0$ and so if $\frac{L}{4\pi^2} \bar{Q}_0 \geq 1$, if suffices to show
+\[
+u \Phi_c'' + \frac{1}{4x} \psi_0 f_0'(\psi_0')(\Phi_c' - 1) \Phi_c' \geq 0.
+\]
+For the asymptotics, we require
+\[
+\Phi(u) = u + \bigo(u^2).
+\]
+Then concavity of $\Phi$, positivity of $\Phi$ and $\Phi(0) = 0$ also implies,
+\[
+0 \leq \Phi'(u) \leq 1.
+\]
+Thus we need
+\[
+\frac{1}{4x} \psi_0 f_0'(\psi_0') \leq -\alpha
+\]
+for some $\alpha > 0$ which would reduce finally to the ODE,
+\begin{equation}
+\label{eq:comparison_ode}
+u \Phi_c'' - \alpha (\Phi_c' - 1) \Phi_c' \geq 0.
+\end{equation}
+
+This is a simple first order ODE for $\Phi_c'$ with solution,
+\[
+\Phi_c'(u) = \frac{1}{1 \pm (cu)^{\alpha}}
+\]
+with $c > 0$. Coupled with the intial condition $\Phi_c(0) = 0$ we then have
+\begin{equation}
+\label{eq:Phi}
+\Phi_c (u) = c \int_0^{u/c} \frac{dv}{1 \pm v^{\alpha}}.
+\end{equation}
+By defining
+\[
+\Phi_0(u) = \int_0^{u} \frac{dv}{1 \pm v^{\alpha}}
+\]
+we have
+\[
+\Phi_c(u) = c \Phi_0(u/c)
+\]
+and
+\[
+\varphi_c(x, \tau) = c e^{\tau} \Phi_0\left(\tfrac{u}{ce^{\tau}}\right).
+\]
+
+We also require that $\Phi_C$ satisfies the asymptotics
+\begin{equation}
+\label{eq:comparison_asymptotics}
+\Phi_c(u) = u + C_2 u^2 + \bigo(u^3)
+\end{equation}
+for $C_2 \ne 0$ (very important!). Then since the self-simlar solution already has the correct asymptotics,
+\[
+\psi_0(x) = \frac{\sqrt{3}}{2} x + a_2 x^2 + \bigo(x^3)
+\]
+we obtain
+\[
+\begin{split}
+\phi_c(x, t) &= e^t \Phi_C (e^{-t} \psi_0(x)) = \frac{\sqrt{3}}{2} x + a_2 x^2 + \frac{3}{4} C_2 e^{-t} x^2 + \bigo(x^3) \\
+& =  \frac{\sqrt{3}}{2} x + (a_2  + \frac{3}{4} C_2 e^{-t}) x^2 + \bigo(x^3)
+\end{split}
+\]
+automatically has the correct first order asymptotics and the second order asymptotics converges exponentially fast to $a_2$, the second order term of $\psi_0$.
+
+For $\Phi_c$ given in equation \eqref{eq:Phi} we have
+\begin{align*}
+\Phi_c(0) &= 0 \\
+\Phi_c'(0) &= 1 \\
+\Phi_c''(0) &= \mp \left.\frac{\alpha c^{-\alpha} u^{\alpha-1}}{(1 \pm (u/c)^{\alpha})^2}\right|_{u=0} = \begin{cases}
+0, & \alpha > 1 \\
+\mp \tfrac{1}{c}, & \alpha = 1 \\
+\mp \infty, &  0 < \alpha < 1.
+\end{cases}
+\end{align*}
+
+\textbf{So this will not work unless $\alpha=1$!}
+
+Since we require $\Phi_c$ to be concave and $\alpha=1$ we have
+\[
+\Phi_c(u) =  \frac{1}{c} \int_0^{cu} \frac{dv}{1 + v} = \frac{1}{c} \ln(1 + cu).
+\]
+with any $c>0$. Then our proposed comparison has exactly the right asymptotics:
+\[
+\varphi_c(x, t) = \frac{\sqrt{3}}{2} x + (a_2 - \frac{3c}{8} e^{-t}) x^2 + \bigo(x^3).
+\]
+
+The function $\Phi_c$ also has the important properties
+\[
+\lim_{c\to 0} \Phi_c (u) = 0, \quad \lim_{c\to \infty} \Phi_c (u) = u.
+\]
+The former limit implies
+\[
+\lim_{c\to 0} \varphi_c (x, t) = 0
+\]
+allowing us to make the barrier $\varphi_c$ arbitrarily small for the initial comparison, while the latter limit implies
+\[
+\lim_{t\to \infty} \varphi_c(x, t) = \lim_{t\to\infty} c e^t \Phi_0(\psi_0(x)/ce^t) = \psi_0(x)
+\]
+so that our barrier limits to the self-similar profile. In this way the barrier interpolates between the fully collapsed situation $\chordarcprofile \equiv 0$, and the self-similar profile forcing anything in between to be attracted to the self-similar profile.
+\end{proof}
+
+\begin{rem}
+ Note that in the theorem, if we begin with the self-similar solution, we could simply take $\Phi_c = \id$ whence $\Phi_c'' = \Phi_c - u \Phi' = \Phi_c' - 1 = 0$. The the right hand side of equation \eqref{eq:Phi_ode} vanishes and so the inequality is sharp with equality attained on the self-similar solution. The philosophy guiding the estimates is that all estimates should be equalities on the self-simliar solution.
+\end{rem}
+
+\begin{rem}
+\label{rem:smooth_case}
+In the smooth case \cite{MR2794630}, we have
+\[
+\psi_0 = 2 \sin(x/2).
+\]
+and \holder's inequality gives,
+\[
+\frac{L}{4\pi^2} \bar{Q} \geq 1, \quad \frac{L}{2\pi} \Delta Q \geq \frac{4}{x} \arccos^2(\psi_0'\Phi_c').
+\]
+The self-similar solution is the circle, hence the curvature is constant and we have equality in \holder{}'s inequality yielding,
+\[
+\frac{L}{4\pi^2} \bar{Q}_0 = 1, \quad \frac{L}{2\pi} \Delta Q_0 = \frac{2\pi}{L} \ell = x = \frac{4}{x} \arccos^2(\psi_0')
+\]
+since $\psi_0'(x) = \cos(x/2)$. Thus $f_0 = 4 \arccos^2$ and
+\[
+\frac{1}{4x} \psi_0 f_0'(\psi_0') = - \frac{1}{4x} 2 \sin(x/2) \frac{8\arccos(\cos(x/2))}{\sqrt{1 - \cos^2(x/2)}} = - \frac{1}{4x} 2 \sin(x/2) \frac{8x}{2\sin(x/2)} = -2
+\]
+
+In this setting, equation \eqref{eq:self_similar_comparison} becomes
+\[
+\partial_t \varphi_c \leq 4 \varphi_c'' + \varphi_c - x\varphi_c' + \frac{1}{x} \varphi_c' 4\arccos^2(\varphi_c').
+\]
+while equation \eqref{eq:Phi_ode} becomes
+\[
+\begin{split}
+0 &\leq 4 e^{-\tau} \frac{(\psi_0')^2}{\psi_0} \left(u \Phi_c'' + \frac{1}{4x} \psi_0 f_0'(\psi_0')(\Phi_c' - 1) \Phi_c'\right) \\
+&= 4 e^{-\tau} \frac{(\psi_0')^2}{\psi_0} \left(u \Phi_c'' - 2 (\Phi_c' - 1) \Phi_c'\right)
+\end{split}
+\]
+and we obtain an ODE inequality for $\Phi$.
+
+The comparison function chosen in \cite{MR2794630},
+\[
+\Phi_c (u) = 2 c \arctan(u/2c)
+\]
+solves
+\[
+\begin{cases}
+u \Phi_c'' - 2 (\Phi_c' - 1) \Phi_c' &= 0 \\
+\Phi_c(0) &= 0
+\end{cases}
+\]
+for any choice of $c \ne 0$ and so equation \eqref{eq:Phi_ode} becomes an equality for this particular choice.
+
+Moroever we have the asymptotics
+\[
+\Phi_c(u) = u + C_3 u^3 + \bigo(u^4)
+\]
+which automatically gives $\phi_c(x, t) = e^t \Phi_c (e^{-t} \psi_0(x))$ the correct asymptotics noting that in the smooth case, the profile has the asymptotics
+\[
+\chordarcprofile(x) = x + C_3 x^3 + \bigo(x^4)
+\]
+with the third order term exponentially decaying to the third order term of the self similar profile.
+\end{rem}
+
+
+
+\printbibliography
+
+\end{document}
