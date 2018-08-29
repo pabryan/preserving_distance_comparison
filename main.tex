@@ -345,7 +345,7 @@ Next, from these variational formulae, we obtain a (weak) differential inequalit
 The chord-arc profile $\chordarcprofile$ satisfies the following differential inequality in the support (or barrier, or sometimes Calabi) sense
 \begin{align*}
 Z'_- &\leq \cos\theta \leq Z'_+, \\
-Z'' &\leq \frac{(-1)^{\delta}\sqrt{1-\cos^2\theta}}{4} (\kappa_{p_0} + (-1)^{\xi+1}\kappa_{q_0}) + (1-\xi) \frac{1-\cos^2\theta}{d(p_0,q_0)}.
+Z'' &\leq \frac{L}{2\pi}\frac{(-1)^{\delta}\sqrt{1-\cos^2\theta}}{4} (\kappa_{p_0} + (-1)^{\xi+1}\kappa_{q_0}) + \frac{L}{2\pi} (1-\xi) \frac{1-\cos^2\theta}{d(p_0,q_0)}.
 \end{align*}
 In particular, if $\gamma$ is convex, then $\chordarcprofile$ is concave and if $\gamma$ is strictly convex, then $\chordarcprofile$ is strictly concave.
 \end{prop}
@@ -357,46 +357,46 @@ Z'' &= \frac{(-1)^{\delta}\sqrt{1-\cos^2\theta}}{4} (\kappa_{p_0} + (-1)^{\xi+1}
 \end{align*}
 
 \begin{proof}
-For any $x_0$, again let $(p_0,q_0)$ be such that $\ell(p_0,q_0) = x_0$ and $\chordarcprofile(x_0) = d(p_0,q_0)$. Consider the curve
+For any $x_0$, again let $(p_0,q_0)$ be such that $\frac{2\pi}{L}\ell(p_0,q_0) = x_0$ and $\chordarcprofile(x_0) = \frac{2\pi}{L} d(p_0,q_0)$. Consider the curve
 \[
-\alpha(u) = (p_0, q_0) + uv_2 = (p_0, q_0) + u(1,-1).
+\alpha(u) = (p_0, q_0) + uv_2 = (p_0, q_0) + (u,-u).
 \]
 This satisfies
 \[
 \partial_u \ell(\alpha(u)) = -2
 \]
-so that $\ell\circ\alpha$ has a smooth local inverse near $u=0$. Thus we can define the smooth function
+so that $\ell\circ\alpha$ has a smooth local inverse near $u=0$ so that \(\ell \circ \alpha(0) = \frac{L}{2\pi} x_0\) and \((\ell \circ \alpha)^{-1} \left(\frac{L}{2\pi} x_0\right) = 0\). Thus we can define the smooth function
 \[
-Z(x) = d(\alpha((\ell\circ\alpha)^{-1} (x)))
+Z(x) = \frac{2\pi}{L} d\left(\alpha \circ (\ell\circ\alpha)^{-1} \left(\frac{L}{2\pi}x\right)\right)
 \]
-which satisfies
+which is an upper supporting function for \(\chordarcprofile\) at \(x_0\):
 \begin{align*}
-Z(x_0) &= d(p_0, q_0) = \chordarcprofile(x_0) \\
+Z(x_0) &= \frac{2\pi}{L} d(p_0, q_0) = \chordarcprofile(x_0) \\
 \intertext{and}
-Z(x) &= d(\alpha((\ell\circ\alpha)^{-1} (x))) \geq \chordarcprofile ((\ell\circ\alpha)^{-1} (x)) = \chordarcprofile(x).
+Z(x) &= \frac{2\pi}{L} d\left(\alpha \circ (\ell\circ\alpha)^{-1} \left(\frac{L}{2\pi}x\right)\right) \geq \chordarcprofile \left((\ell\circ\alpha)^{-1} \left(\frac{2\pi}{L}x\right)\right) = \chordarcprofile(x).
 \end{align*}
 
 Observe that $\alpha' = v_2$ and
 \[
-\partial_x (\ell\circ\alpha)^{-1} = -\frac{1}{2}.
+\partial_x \left[(\ell\circ\alpha)^{-1} \left(\frac{L}{2\pi}x\right)\right] = -\frac{1}{2} \frac{L}{2\pi}.
 \]
 Therefore, using also the first variation of $d$ \eqref{eq:d_first_var}, we have
 \[
-Z'(x_0) = Dd \cdot \left(-\frac{1}{2}v_2\right) = -\frac{1}{2} \cos\theta (-\omega_{p_0} + \omega_{q_0}) \cdot (\tang_{p_0} - \tang_{q_0}) = \cos\theta
+Z'(x_0) = \frac{2\pi}{L} D d \cdot \left(-\frac{1}{2}\frac{L}{2\pi} v_2\right) = -\frac{1}{2} \cos\theta (-\omega_{p_0} + \omega_{q_0}) \cdot (\tang_{p_0} - \tang_{q_0}) = \cos\theta
 \]
 proving the first equation.
 
-For the second equation, we have
+For the second equation, we have (as a quadratic form)
 \[
-Z''(x_0) = D^2 d \cdot \left(-\frac{1}{2} v_2\right)
+Z''(x_0) = \frac{2\pi}{L} D^2 d \left(-\frac{1}{2}\frac{L}{2\pi} v_2\right)
 \]
-thinking of $D^2 d$ as a quadratic form. Now apply Proposition \ref{prop:spatial_var} to obtain
+Now apply Proposition \ref{prop:spatial_var} to obtain
 \[
-Z''(x_0) = \sqrt{1-\cos^2\theta} K\cdot \left(-\frac{1}{2} v_2\right) + \frac{1-\cos^2\theta}{d} M \cdot \left(-\frac{1}{2} v_2\right).
+Z''(x_0) = \frac{L}{8\pi} \left[\sqrt{1-\cos^2\theta} K (v_2) + \frac{1-\cos^2\theta}{d} M (v_2)\right].
 \]
 For the first term we have
 \begin{align*}
-\sqrt{1-\cos^2\theta} K \cdot \left(-\frac{1}{2} v_2\right) &= \frac{\sqrt{1-\cos^2\theta}}{4} (-1)^{\delta} 
+\sqrt{1-\cos^2\theta} K (v_2) &= \sqrt{1-\cos^2\theta} (-1)^{\delta} 
 \begin{pmatrix}
 1 & -1
 \end{pmatrix}
@@ -408,7 +408,7 @@ For the first term we have
 1 \\
 -1
 \end{pmatrix} \\
-&= \frac{\sqrt{1-\cos^2\theta}}{4} (-1)^{\delta} (\kappa_{p_0} + (-1)^{\xi + 1} \kappa_{q_0})
+&= \sqrt{1-\cos^2\theta} (-1)^{\delta} (\kappa_{p_0} + (-1)^{\xi + 1} \kappa_{q_0})
 \end{align*}
 which is the first term in the second equation of the proposition.
 
@@ -418,7 +418,7 @@ For case two, we have $M=M_-$ and we can't apply the same trick to kill the seco
 
 Finally, if $\gamma$ is convex, then $\kappa \geq 0$ and $\tang_{p_0} \ne \tang_{q_0}$ so that $\xi = 1$. Moreover, since the closure of the region bounded by $\kappa$ is a convex body, and since $X(p_0), X(q_0)$ lie in the closure of this region, for any $u \in [0,1]$, we must have that $X(p_0) + u(X(q_0) - X(p_0))$ also lies in this region so that $(X(q_0) - X(p_0))$ (and hence $w = \tfrac{1}{d(p_0,q_0)} (X(q_0) - X(p_0))$) points inward ensuring that $\delta = 1$. Therefore, at every point $x_0$, the function $Z$ satisfies
 \[
-Z'' \leq - \frac{\sqrt{1-\cos^2 \theta}}{4} (\kappa_{p_0} + \kappa_{q_0}) \leq 0
+Z'' \leq - \frac{L}{2\pi} \frac{\sqrt{1-\cos^2 \theta}}{4} (\kappa_{p_0} + \kappa_{q_0}) \leq 0
 \]
 and $\chordarcprofile$ is everywhere supported above by a concave function, hence is itself concave \cite{MR1674097}.
 \end{proof}
