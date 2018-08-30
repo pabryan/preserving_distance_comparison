@@ -32,7 +32,7 @@ where \(h(t)\) is a global term.
 \section{Basic conventions, quantities and evolution equations}
 \label{sec:basic}
 
-We use the convention for the Frenet-Serret equations
+We take the convention that \(\tang\) is the unit tangent and \(\nor\) is the \emph{outer} unit normal. To ensure convex curves have positive curvature we then use the convention for the Frenet-Serret equations,
 \begin{equation}
 \label{eq:fs}
 \partial_s \tang = - \kappa \nor, \quad \partial_s \nor = \kappa \tang.
@@ -42,7 +42,7 @@ We use the convention for the Frenet-Serret equations
 \label{lem:basic_evolution}
 The following evolution equations hold:
 \begin{enumerate}
-\item \([\partial_s, \partial_t] = \kappa^2 \partial_s\)
+\item \([\partial_t, \partial_s] = \kappa^2 \partial_s\)
 \item \(\partial_t ds = -\kappa^2 ds\)
 \item \(\partial_t \tang = -\partial_s \kappa\nor\)
 \item \(\partial_t \nor = \partial_s \kappa \tang\)
