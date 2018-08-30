@@ -441,14 +441,18 @@ To end this section, we derive a viscosity equation for the chord-arc profile of
 \label{thm:spatial_viscosity}
 Let $(p_0,q_0)$ be points such that $d(p_0, q_0) = \chordarcprofile(\ell(p_0, q_0))$. The chord-arc profile $\chordarcprofile$ of a smooth, simple, closed curve satisfies the following inequality in the viscosity-sense:
 \[
--4Z'' + 4(1-\xi(p_0,q_0)) \frac{1 - (Z')^2}{Z} \geq (-1)^{\delta(p_0,q_0)+1} \sqrt{1 - (Z')^2} \left[\kappa_{p_0} + (-1)^{1+\xi(p_0,q_0)} \kappa_{q_0}\right].
+-\frac{4Z''}{\sqrt{1 - (Z')^2}} + 4\sqrt{1-\xi(p_0,q_0)} \frac{1 - (Z')^2}{Z} \geq \frac{L}{2\pi} (-1)^{\delta(p_0,q_0)+1} \left[\kappa_{p_0} + (-1)^{1+\xi(p_0,q_0)} \kappa_{q_0}\right].
 \]
 \end{thm}
 
 This means that for any $x_0 \in (0,2\pi)$, if $Z$ is a smooth lower supporting function at $x_0$, i.e. $Z$ is defined in a neighbourhood of $x_0$ such that $Z(x_0) = \chordarcprofile (x_0)$ and $Z(x) \leq \chordarcprofile (x)$, then $Z$ satisfies the inequality in the usual sense.
 
 \begin{proof}
-Fix $x_0 \in (0,2\pi)$. Let $Z(x)$ be a smooth function defined in neighbourhood of $x_0$ and such that $Z(x_0) = \chordarcprofile(x_0)$ and $Z(x) \leq \chordarcprofile(x)$. Choose $(p_0,q_0)$ with $p_0\ne q_0$ so that $\ell(p_0, q_0) = x_0$ and $\chordarcprofile(x_0) = d(p_0, q_0)$.  Then we have $d(p, q) \geq \chordarcprofile(\ell(p, q)) \geq Z(\ell(p, q))$ for all $(p,q)$ in an open neighbourhood of $(p_0,q_0)$ small enough so that $Z$ is defined for all $x=\ell(p,q)$. Moreover, we have equality at $(p_0, q_0)$ so that the smooth function $\Phi(p, q) = d(p,q) - Z(\ell(p, q))$ satisfies
+Fix $x_0 \in (0,2\pi)$. Let $Z(x)$ be a smooth function defined in neighbourhood of $x_0$ and such that $Z(x_0) = \chordarcprofile(x_0)$ and $Z(x) \leq \chordarcprofile(x)$. As in \Cref{prop:barrier}, choose $(p_0,q_0)$ with $p_0\ne q_0$ so that $\ell(p_0, q_0) = \tfrac{L}{2\pi} x_0$ and $\chordarcprofile(x_0) = \tfrac{2\pi}{L}d(p_0, q_0)$.  Then we have
+\[
+\frac{2\pi}{L} d(p, q) \geq \chordarcprofile\left(\frac{2\pi}{L} \ell(p, q)\right) \geq Z\left(\frac{2\pi}{L}\ell(p, q)\right)
+\]
+for all $(p,q)$ in an open neighbourhood of $(p_0,q_0)$ small enough so that $Z$ is defined for all $x=\tfrac{2\pi}{L}\ell(p,q)$. Moreover, we have equality at $(p_0, q_0)$ so that the smooth function $\Phi(p, q) = \frac{2\pi}{L} d(p,q) - Z\left(\tfrac{2\pi}{L}\ell(p, q)\right)$ satisfies
 \[
 D \Phi = 0, \quad D^2\Phi \geq 0
 \]
@@ -460,12 +464,12 @@ From the vanishing at $(p_0,q_0)$ of $D\Phi$ applied to $\tang_{p_0}$ and $\tang
 Z' = \inpr{w}{\tang_{p_0}} = \inpr{w}{\tang_{q_0}} = \cos\theta.
 \end{equation}
 
-Using Proposition \ref{prop:spatial_var} then gives the inequality
+Using Proposition \ref{prop:spatial_var} for the second variation of \(d\) then gives the inequality
 \begin{equation}
 \label{eq:matrix_inequality}
 \begin{split}
-0 &\leq D^2\Phi_{(p_0,q_0)} = D^2 d_{(p_0,q_0)} - Z'' D\ell\otimes D\ell \\
-&= \sqrt{1 - (Z')^2(x_0)} K(p_0,q_0) + \frac{1-(Z')^2(x_0)}{Z(x_0)} M (p_0,q_0) - Z''(x_0) M_-.
+0 &\leq D^2\Phi_{(p_0,q_0)} = \frac{2\pi}{L} D^2 d_{(p_0,q_0)} - \left(\frac{2\pi}{L}\right)^2 Z'' D\ell\otimes D\ell \\
+&= \frac{2\pi}{L}\left[\sqrt{1 - (Z')^2(x_0)} K(p_0,q_0) + \frac{1-(Z')^2(x_0)}{\frac{L}{2\pi} Z(x_0)} M (p_0,q_0) - \frac{2\pi}{L} Z''(x_0) M_-\right].
 \end{split}
 \end{equation}
 
@@ -475,7 +479,7 @@ Again, we consider the two cases, $\xi=1$ and $\xi=0$.
 
 In this case $M=M_+$ and we apply the inequality \eqref{eq:matrix_inequality} to $v_2 = \tang_{p_0} - \tang_{q_0}$, the null eigenvector of $M_+$, to obtain
 \[
-0 \leq (-1)^{\delta} \sqrt{1 - (Z')^2(x_0)} (\kappa_{p_0} + \kappa_{q_0}) - 4Z''
+0 \leq (-1)^{\delta} \sqrt{1 - (Z')^2(x_0)} (\kappa_{p_0} + \kappa_{q_0}) - \frac{2\pi}{L} 4Z''
 \]
 which is the required inequality when $\xi=1$.
 
@@ -483,7 +487,7 @@ which is the required inequality when $\xi=1$.
 
 In this case $M=M_-$, but applying inequality \eqref{eq:matrix_inequality} to $v_1 = \tang_{p_0} + \tang_{q_0}$, the null eigenvector of $M_-$, effectively cancels out all the $Z$ terms which is of no use to us. So instead we use the eigenvector $v_1$ once more to obtain
 \[
-0 \leq (-1)^{\delta} \sqrt{1 - (Z')^2(x_0)} (\kappa_{p_0} - \kappa_{q_0}) + 4\frac{1-(Z')^2(x_0)}{Z(x_0)} -4Z''
+0 \leq (-1)^{\delta} \sqrt{1 - (Z')^2(x_0)} (\kappa_{p_0} - \kappa_{q_0}) + \frac{2\pi}{L} 4\frac{1-(Z')^2(x_0)}{Z(x_0)} -\frac{2\pi}{L} 4Z''
 \]
 which is the required inequality when $\xi=0$.
 \end{proof}
