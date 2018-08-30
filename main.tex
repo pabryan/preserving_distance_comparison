@@ -347,7 +347,11 @@ The chord-arc profile $\chordarcprofile$ satisfies the following differential in
 Z'_- &\leq \cos\theta \leq Z'_+, \\
 Z'' &\leq \frac{L}{2\pi}\frac{(-1)^{\delta}\sqrt{1-\cos^2\theta}}{4} (\kappa_{p_0} + (-1)^{\xi+1}\kappa_{q_0}) + \frac{L}{2\pi} (1-\xi) \frac{1-\cos^2\theta}{d(p_0,q_0)}.
 \end{align*}
-In particular, if $\gamma$ is convex, then $\chordarcprofile$ is concave and if $\gamma$ is strictly convex, then $\chordarcprofile$ is strictly concave.
+In particular, if $\gamma$ is convex, then
+\[
+Z'' \leq - \frac{L}{2\pi} \frac{\sqrt{1-\cos^2 \theta}}{4} (\kappa_{p_0} + \kappa_{q_0}) \leq 0
+\]
+and hence $\chordarcprofile$ is concave. If $\gamma$ is strictly convex, then $\chordarcprofile$ is strictly concave.
 \end{prop}
 
 Recall that the support inequality means for every $x_0 \in [0,2\pi]$ there exists a smooth function $Z$ defined in a neighbourhood of $x_0$ such that $Z(x) \geq \chordarcprofile$, $Z(x_0) = \chordarcprofile(x_0)$ and
