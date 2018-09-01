@@ -599,6 +599,15 @@ Then if \(\varphi (x, 0) \leq \chordarcprofile(x, 0)\) for all \(x \in (0, 2\pi)
 \end{thm}
 
 \begin{proof}
+For convenience, let us define the \emph{linear} operator
+\[
+\mathcal{L} (\varphi) = 4 \varphi'' + \left(\frac{L}{2\pi}\right)^2 (\varphi - x \varphi') \avg{\kappa^2} + \varphi' \frac{L}{2\pi} \int_{p_0}^{q_0} \kappa^2 ds
+\]
+so the assumption of the theorem is
+\[
+(\partial_t - \mathcal{L}) \varphi \geq 0.
+\]
+
 We will show that for each \(\bar{\tau} > 0\), the theorem is true on \([0, \bar{\tau}]\). For \(\epsilon > 0\), define
 \[
 \varphi_{\epsilon} (x, \tau) = (1-\epsilon) \varphi(x, \tau) + \epsilon^2 e^{-\lambda\tau} x(2\pi - x).
@@ -631,7 +640,11 @@ provided
 \[
 0 < x < \bar{x} := \min\left\{\delta, \frac{\epsilon(1-2\pi \epsilon)}{\abs{A - c_2(\bar{\tau})}}\right\}.
 \]
-Thus we have \(\chordarcprofile(x, \tau) > \varphi_{\epsilon}(x, \tau)\) for \((x, \tau) \in (0, \bar{x}) \times (0, \bar{\tau})\) and by symmetry also for for \((x, \tau) \in (2\pi-\bar{x}, 2\pi) \times (0, \bar{\tau})\). The important point here is that these inequalities hold true \emph{for any} \(\lambda > 0\) with \(\bar{x}\) and \(\bar{\tau}\) independent of \(\lambda\).
+Thus we have \(\chordarcprofile(x, \tau) > \varphi_{\epsilon}(x, \tau)\) for \((x, \tau) \in (0, \bar{x}) \times (0, \bar{\tau})\) and by symmetry also for for \((x, \tau) \in (2\pi-\bar{x}, 2\pi) \times (0, \bar{\tau})\). The important point here is that these inequalities hold true \emph{for any} \(\lambda > 0\) with \(\bar{x}\) and \(\bar{\tau}\) independent of \(\lambda\). Then anticipating the upcoming computations, we choose
+\[
+\lambda > \frac{\sup_{x \in [\bar{x}, 2\pi-\bar{x}]} \abs{\mathcal{L} [x(2\pi-x)]}}{\bar{x}(2\pi - \bar{x})}.
+\]
+depending only on \(\bar{x}\) (which only depends on \(\bar{\tau}\)).
 
 Next, at \(\tau = 0\) and for \(x \in (0, 2\pi)\), we have
 \[
@@ -651,14 +664,6 @@ Hence we have initial strict inequality and strict inequality near \(\{0, 2\pi\}
 
 Thus at $(x_0,\tau_0)$, $\varphi_{\epsilon}$ supports \(\chordarcprofile\) from below, satisfying properties 1 and 2 in the definition of viscosity supersolutions in \Cref{thm:viscosity}. Since $\varphi_{\epsilon}$ is strictly concave, by lemma \ref{lem:concave_barrier}, $\tang_{p_0} \ne \tang_{q_0}$ and hence by \Cref{thm:viscosity}, at \((x_0, \tau_0)\)
 \[
-\partial_{\tau} \varphi_{\epsilon} - 4 \varphi_{\epsilon}'' - \left(\frac{L}{2\pi}\right)^2 (\varphi_{\epsilon} - x \varphi_{\epsilon}') \avg{\kappa^2} - \varphi_{\epsilon}' \frac{L}{2\pi} \int_{p_0}^{q_0} \kappa^2 ds \geq 0.
-\]
-For convenience, let us define the \emph{linear} operator
-\[
-\mathcal{L} (\varphi) = 4 \varphi'' + \left(\frac{L}{2\pi}\right)^2 (\varphi - x \varphi') \avg{\kappa^2} + \varphi' \frac{L}{2\pi} \int_{p_0}^{q_0} \kappa^2 ds
-\]
-so that
-\[
 (\partial_{\tau} - \mathcal{L}) \varphi_{\epsilon}|_{(x_0, \tau_0)} \geq 0.
 \]
 
@@ -669,19 +674,15 @@ On the other hand, the assumptions on \(\varphi\) imply that
 &\leq \epsilon^2  (\partial_{\tau} - \mathcal{L}) [e^{-\lambda\tau} x(2\pi-x)].
 \end{split}
 \]
+From the argument above we know that \((x_0, \tau_0) \in [\bar{x}, 2\pi - \bar{x}] \times [0, \bar{\tau}]\) where \(x(x-2\pi) \geq \bar{x}(2\pi - \bar{x}) > 0\) has a positive lower bound. By the definition of \(\lambda\),
+\[
+\lambda x_0(2\pi - x_0) + \mathcal{L} [x(2\pi-x)]|_{x_0} > 0.
+\]
 Thus at \((x_0, \tau_0)\) we have
 \[
-(\partial_{\tau} - \mathcal{L}) \varphi_{\epsilon}|_{(x_0, t_0)} \leq -\epsilon^2 e^{-\lambda \tau_0} \left(\lambda x_0(2\pi - x_0) + \mathcal{L} [x(2\pi-x)]|_{x_0}\right).
+(\partial_{\tau} - \mathcal{L}) \varphi_{\epsilon}|_{(x_0, t_0)} \leq -\epsilon^2 e^{-\lambda \tau_0} \left(\lambda x_0(2\pi - x_0) + \mathcal{L} [x(2\pi-x)]|_{x_0}\right) < 0
 \]
-From the argument above we know that \((x_0, \tau_0) \in [\bar{x}, 2\pi - \bar{x}] \times [0, \bar{\tau}]\) where \(x(x-2\pi) \geq \bar{x}(2\pi - \bar{x}) > 0\) has a positive lower bounded. Choose
-\[
-\lambda > \frac{\sup_{x \in [\bar{x}, 2\pi-\bar{x}]} \abs{\mathcal{L} [x(2\pi-x)]}}{\bar{x}(2\pi - \bar{x})}.
-\]
-Then \(\lambda\) depends only on \(\bar{x}\) (which only depends on \(\bar{\tau}\)) and is in particular independent of \((x_0, \tau_0)\) and
-\[
-\lambda x_0(2\pi - x_0) + \mathcal{L} [x(2\pi-x)]|_{x_0} > 0
-\]
-gives our contradiction.
+which is our desired contradiction.
 
 The last statement giving the curvature bound follows immediately from \Cref{prop:asymptotics} since both \(\varphi\) and \(\chordarcprofile\) have the same first order term.
 \end{proof}
@@ -689,60 +690,85 @@ The last statement giving the curvature bound follows immediately from \Cref{pro
 \section{Comparison Function}
 \label{sec:comparison_function}
 
-In this section, we seek suitable functions $\varphi_0$ satisfying the hypotheses of Theorem \ref{thm:comparison}. Our approach is to seek a one-parameter family $\varphi_c$ of such functions such that for any given curve there is a $c$ with $\varphi_c(x, 0) \leq \chordarcprofile(x, 0)$. Such functions are constructed as in \cite{MR2794630} by making a change of variables $x \mapsto \psi_0(x)$ where $\psi_0(x)$ is the profile of a self-similar solution to the flow while simultaneously changing the time parameter $\tau \mapsto e^{\tau}$. Then we seek a similarity solution of the resulting ODE. That is we make the ansatz,
+In this section, we seek suitable functions $\varphi$ satisfying the hypotheses of Theorem \ref{thm:comparison}. Our approach is to seek a one-parameter family $\varphi_c$ of such functions such that for any given curve there is a $c$ with $\varphi_c(x, 0) \leq \chordarcprofile(x, 0)$. Such functions are constructed as in \cite{MR2794630} by making a change of variables $x \mapsto \psi(x) = 2 \sin(x/2)$ which is the profile of a self-similar solution (i.e. round circle) to the flow while simultaneously changing the time parameter $\tau \mapsto e^{\tau}$. Then we seek a similarity solution of the resulting ODE. That is we make the ansatz,
 \[
-\varphi_0(x, \tau) = e^{\tau} \Phi(e^{-\tau} \psi_0(x)).
+\varphi(x, \tau) = e^{\tau} \Phi(e^{-\tau} \psi(x)).
 \]
 
 \begin{thm}
 \label{thm:comparison_function}
 Let
 \[
-\Phi_c(u) = 
+\varphi_c(x, \tau) = \frac{1}{c} e^{\tau} \arctan(c e^{-\tau} 2\sin(x/2)).
 \]
-and
-\[
-\varphi_c(x, \tau) = e^{\tau} \Phi_c(e^{-\tau} \psi_0(x))
-\]
-with $\psi_0$ a self-similar solution of the Network CSF with a single loop and $k$ nodes.
 
-Let $\gamma$ be a a solution of the network CSF such that
-\begin{enumerate}
-\item $\frac{L}{4\pi^2} \bar{Q} \geq \frac{L}{4\pi^2} \bar{Q}_0$, and
-\item $\frac{L}{2\pi} \Delta Q \geq \tfrac{1}{x} f_0(\varphi_c')$, where $\frac{L}{2\pi} \Delta Q_0 = \tfrac{1}{x} f_0(\psi_0')$.
-\end{enumerate}
-Then there exists a $c$ such that
+Then there exists a $c \in \R$ such that
 \[
 \varphi_c(x, \tau(t)) \leq \chordarcprofile(x, t)
 \]
 for every $x, t$. Moreover,
 \[
-\frac{L}{2\pi} \max_i \{\kappa^+(a_i, t) + \kappa^-(a_i, t)\} \leq 8 e^{-\tau(t)} (\psi_0')^2 \Phi_c'' + \psi_0'' \Phi_c'.
+\sup_{p \in \S^1} \kappa(p, t) \leq 96 \pi^2 \frac{Ce^{-a\tau(t)}}{L^2(t)}.
 \]
 \end{thm}
 
 \begin{proof}
-First, we claim that the hypotheses of the Comparison Theorem \ref{thm:comparison} will be satisfied if we can show that $\varphi_c$ satisfies the bulleted conditions of that theorem and that
-\begin{equation}
-\label{eq:self_similar_comparison}
-\partial_t \varphi_c \leq 4 \varphi_c'' + \frac{L}{4\pi^2} \bar{Q}_0 (\varphi_c - x\varphi_c') + \frac{1}{x} \varphi_c' f_0 (\varphi_c').
-\end{equation}
-To see why the claim holds, observe that the hypotheses of the theorem give
-\[
-\frac{L}{4\pi^2} \bar{Q}_0 (\varphi_c - x\varphi_c') + \frac{1}{x} \varphi_c' f_0 (\varphi_c') \leq \frac{L}{4\pi^2} \bar{Q} (\varphi_c - x\varphi_c') + \frac{L}{2\pi} \Delta Q \varphi_c'
-\]
-noting that concavity of $\varphi_c$, $\varphi_c(0) = 0$, the symmetry of $\varphi_c$ about $x=\pi$, and the non-negativity of $\varphi_c$ imply that for $x \in [0, \pi]$, $\varphi_c' \geq 0$ and $(\varphi_c - x \varphi_c') \geq 0$. The latter follows by observing that the function $f(x) = \varphi_c(x) - x \varphi_c'(x)$ satisfies $f(0) = 0$ and $f'(x) = -x \varphi_c''(x) \geq 0$.
+We need to show two things:
+\begin{enumerate}
+\item Given \(\gamma_0\), there exists a \(c \in \R\) such that \(\varphi_c(x, 0) \leq \chordarcprofile(x, 0)\), and
+\item the hypotheses of the Comparison \Cref{thm:comparison} are satisfied.
+\end{enumerate}
 
-Thus we must verify equation \eqref{eq:self_similar_comparison}. Our ansatz gives
+Recall that the differential inequality in \Cref{thm:comparison} requires
+\[
+\partial_{\tau} \varphi - 4 \varphi'' + \left(\frac{L}{2\pi}\right)^2 (\varphi - x \varphi') \avg{\kappa^2} + \varphi' \frac{L}{2\pi} \int_{p_0}^{q_0} \kappa^2 ds \leq 0.
+\]
+
+The basic challenge is to express the (essentially unknown) curvature integrals in terms of the profile \(\chordarcprofile\). This can be done explicitly via \holder{}'s inequality:
+\[
+\int \kappa ds = \int \kappa \cdot 1 ds \leq \left(\int \kappa^2 ds\right)^{1/2} \left(\int 1 ds\right)^{1/2}
+\]
+so that using \(\int_{\gamma} \kappa ds = 2\pi\) and \(\int_{p_0}^{q_0} \kappa ds = \theta(p_0) - \theta(q_0)\) we have
+\[
+\left(\frac{L}{2\pi}\right)^2 \avg{\kappa^2} \geq 1
+\]
+and
+\[
+\frac{L}{2\pi} \int_{p_0}^{q_0} \kappa^2 ds \geq \frac{L}{2\pi \ell} (\theta(q_0) - \theta(p_0)^2 = \frac{4}{x} \arccos^2(\chordarcprofile').
+\]
+since
+\[
+\cos \theta(q_0) = - \cos \theta(p_0) = \chordarcprofile'.
+\]
+
+linearise around the self similar solution, \(\psi_0\). First observe that for the self-similar solution, namely the round circle \(\gamma_0\), we have \(\kappa_0 \equiv \tfrac{2\pi}{L_0}\). Then
+\[
+\avg{\kappa_0^2} = \frac{1}{L_0}\int_0^L \left(\frac{2\pi}{L_0}\right)^2 ds = \left(\frac{2\pi}{L_0}\right)^2
+\]
+is precisely the time scaling in \Cref{defn:timeprofile}. And
+\[
+\int_{p_0}^{q_0} \kappa_0^2 ds = \int_{p_0}^{q_0} \left(\frac{2\pi}{L_0}\right)^2 ds = \left(\frac{2\pi}{L_0}\right)^2 (q_0 - p_0) = \left(\frac{2\pi}{L_0}\right)^2 \ell(p_0, q_0).
+\]
+For a general
+
+Our ansatz gives
 \begin{align*}
 \partial_{\tau} \varphi_c &= e^{\tau} \left(\Phi_c - e^{-\tau} \psi_0 \Phi_c'\right) \\
 \varphi_c' &= \psi_0' \Phi_c' \\
 \varphi_c'' &= e^{-\tau} (\psi_0')^2 \Phi_c'' + \psi_0'' \Phi_c'.
 \end{align*}
-Substitution into equation \eqref{eq:self_similar_comparison} then requires
+Substituting the ansatz, the differential inequality becomes
 \[
-e^{\tau} \left(\Phi_c - e^{-\tau} \psi_0 \Phi_c'\right) \leq 4 \left(e^{-\tau} (\psi_0')^2 \Phi_c'' + \psi_0'' \Phi_c'\right) + \frac{L}{4\pi^2} \bar{Q}_0 (e^{\tau} \Phi_c - x \psi_0' \Phi_c') + \frac{1}{x} f_0(\Phi_c' \psi_0') \Phi_c' \psi_0'.
+\begin{split}
+0 &\geq e^{\tau} \left(\Phi_c - e^{-\tau} \psi_0 \Phi_c'\right) - 4\left(e^{-\tau} (\psi_0')^2 \Phi_c'' + \psi_0'' \Phi_c'\right) \\
+&\quad + \left(\frac{L}{2\pi}\right)^2 (e^{\tau} \Phi - x \psi_0'\Phi') \avg{\kappa^2} + \psi_0'\Phi' \frac{L}{2\pi} \int_{p_0}^{q_0} \kappa^2 ds \\
+&= - 4 e^{-\tau} (\psi_0')^2 \Phi_c'' + e^{\tau} \Phi + \left(\frac{L}{2\pi}\right)^2 e^{\tau} \Phi \\
+&\quad + \left(-4 \psi_0'' + \psi_0' \frac{L}{2\pi}\int_{p_0}^{q_0} \kappa^2 ds - \left(\frac{L}{2\pi}\right)^2 \avg{\kappa^2} x\psi_0' - \psi_0\right) \Phi'
+\end{split}
 \]
+
+
+
 Rearranging, this is equivalent to
 \[
 \begin{split}
