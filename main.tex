@@ -583,24 +583,107 @@ The proof is completed by combining with equation \eqref{eq:time_ineq} while not
 
 \begin{thm}
 \label{thm:comparison}
-Let \(\Phi : [0, 2\pi] \times [0, \infty) \to \R\) be a concave function symmetric about \(\pi\) with \(\Phi(0, t) = \Phi(2\pi, t) = 0\) for all \(t \geq 0\) and such that
+Let \(\varphi : [0, 2\pi] \times [0, \infty) \to \R\) be a continuous, strictly positive and \(C^{\infty}\) on \((0, 2\pi) \times (0, \infty)\) function that is strictly concave, symmetric about \(\pi\) with \(\varphi(0, \tau) = \varphi(2\pi, \tau) = 0\) for all \(\tau \geq 0\) with asymptotic behaviour
 \[
-\partial_t \Phi \geq .
+\varphi(x, \tau) = x - C(\tau) x^3 + \bigo(x^4)  \quad \text{as} \quad x \to 0
 \]
-Define the function,
+and such that
 \[
-\varphi(x, t) = \Phi()
+\partial_{\tau} \varphi - 4 \varphi'' - \left(\frac{L}{2\pi}\right)^2 (\varphi - x \varphi') \avg{\kappa^2} - \varphi' \frac{L}{2\pi} \int_{p_0}^{q_0} \kappa^2 ds \leq 0.
 \]
 
-If \(\varphi (x, 0) \leq \chordarcprofile(x, 0)\) for all \(x \in (0, 2\pi)\) then \(\varphi (x, t) \leq \chordarcprofile(x, t)\) for all \(x \in (0, 2\pi)\) and \(t \geq 0\).
+Then if \(\varphi (x, 0) \leq \chordarcprofile(x, 0)\) for all \(x \in (0, 2\pi)\) then \(\varphi (x, \tau) \leq \chordarcprofile(x, \tau)\) for all \(x \in (0, 2\pi)\) and \(\tau \geq 0\). Moreover
+\[
+\sup_{p \in \S^1} \kappa(p, t) \leq 96 \pi^2 \frac{C(\tau(t))}{L^2(t)}.
+\]
 \end{thm}
 
 \begin{proof}
-Let $\phi$ be as in the theorem. By assumption, $\phi(x, 0) < \chordarcprofile(x, 0)$ for $x\in (0,2\pi)$ and the asymptotic behaviour of $\phi$ and $\chordarcprofile$ near the endpoints $0,2\pi$ ensures that $\phi(x, t) < \chordarcprofile(x, t)$ for $x$ sufficiently near $0$ or $2\pi$. Then if the theorem is false, there must be a first time $t_0>0$ and an $x_0\in(0,2\pi)$ such that $\phi(x_0, t_0) = \chordarcprofile(x_0, t_0)$ and $\phi(x, t) \leq \chordarcprofile(x, t)$ for all $(x,t) \in [0,2\pi] \times [0, t_0]$. Thus at $(x_0,t_0)$, $\phi$ satisfies properties 1 and 2 in the definition of viscosity supersolutions above, and since $\phi$ is strictly concave, by lemma \ref{lem:concave_barrier}, $\tang_{p_0} \ne \tang_{q_0}$ and hence by Theorem \ref{thm:viscosity},
+We will show that for each \(\bar{\tau} > 0\), the theorem is true on \([0, \bar{\tau}]\). For \(\epsilon > 0\), define
 \[
-\partial_t\phi - 2\sqrt{1 - (\phi')^2}f\left(\frac{2\phi''}{\sqrt{1-(\phi')^2}}\right) - \avg{\kappa^2} \left(\phi - \phi'\ell\right) - \phi' \int_{p_0}^{q_0} \kappa^2 ds \geq 0.
+\varphi_{\epsilon} (x, \tau) = (1-\epsilon) \varphi(x, \tau) + \epsilon^2 e^{-\lambda\tau} x(2\pi - x).
 \]
-contradicting the strict inequality from the assumptions on $\phi$ in the theorem.
+where \(\lambda > 0\) will be chosen momentarily but depending only on \(\bar{\tau}\). To prove that \(\varphi \leq \chordarcprofile\), it suffices to show that there exists an \(\epsilon_0 > 0\) such that for all \(\epsilon \in (0, \epsilon_0)\), \(\varphi_{\epsilon}(x, \tau) < \chordarcprofile(x, \tau)\) for all \(x \in (0, 2\pi)\) and \(\tau > 0\). Then we just take the (pointwise) limit \(\epsilon \to 0\).
+
+Now, we have \(\varphi_{\epsilon}(0, \tau) = \varphi_{\epsilon}(2\pi, \tau) = 0\) for all \(\tau\) and \(\varphi_{\epsilon}\) is strictly concave, strictly positive for \(x \in (0, 2\pi)\) and symmetric about \(\pi\). Moreover,
+\[
+\varphi_{\epsilon}'(0, \tau) = (1-\epsilon) \varphi'(0, \tau) + 2\pi \epsilon^2 e^{-\lambda\tau} = 1 + \epsilon(2\pi \epsilon e^{-\lambda\tau} - 1) < 1
+\]
+for all \(\epsilon < 1/2\pi\) and for all \(\lambda \geq 0\). Symmetry ensures that \(\varphi_{\epsilon}'(2\pi, 0) \geq -1\) for all \(\tau\).
+
+Since \(\chordarcprofile'(0) = -\chordarcprofile(2\pi) = 1\), we have \(\varphi_{\epsilon} (x, \tau) < \chordarcprofile(x, \tau)\) in a (time-dependent but non-empty) neighbourhood of \(\{0, 2\pi\}\). In fact, from the assumption in the theorem for the asymptotics of \(\varphi\) and Taylor's theorem with remainder, we have
+\[
+0 \leq \varphi_{\epsilon}(x, \tau) \leq c_1 x + c_2(\bar{\tau}) x^2.
+\]
+where
+\[
+c_1 = \left[1 + \epsilon(2\pi \epsilon - 1)\right], \quad c_2(\bar{\tau}) = \left[(1-\epsilon) \sup_{x\in [0, 2\pi], \tau \in [0, \bar{\tau}]} \varphi''\right]
+\]
+are upper bounds for \(\varphi_{\epsilon}'(0, \tau)\) and \(\varphi_{\epsilon}''(x, \tau)\) respectively with \(x \in [0, 2\pi]\) and \(\tau \in [0, \bar{\tau}]\). Similarly, for \(\chordarcprofile\) we have by \Cref{prop:asymptotics},
+\[
+\chordarcprofile(x, \tau) \geq x + A x^2 \geq 0
+\]
+on an interval \(x \in [0, \delta]\) and all \(\tau \in [0, \tau_0]\) where \(A \in \R\). Then
+\[
+\chordarcprofile(x, \tau) - \varphi_{\epsilon}(x, \tau) \geq \epsilon(1-2\pi \epsilon) x + (A - c_2(\bar{\tau})) x^2 > 0
+\]
+provided
+\[
+0 < x < \bar{x} := \min\left\{\delta, \frac{\epsilon(1-2\pi \epsilon)}{\abs{A - c_2(\bar{\tau})}}\right\}.
+\]
+Thus we have \(\chordarcprofile(x, \tau) > \varphi_{\epsilon}(x, \tau)\) for \((x, \tau) \in (0, \bar{x}) \times (0, \bar{\tau})\) and by symmetry also for for \((x, \tau) \in (2\pi-\bar{x}, 2\pi) \times (0, \bar{\tau})\). The important point here is that these inequalities hold true \emph{for any} \(\lambda > 0\) with \(\bar{x}\) and \(\bar{\tau}\) independent of \(\lambda\).
+
+Next, at \(\tau = 0\) and for \(x \in (0, 2\pi)\), we have
+\[
+\varphi_{\epsilon} (x, 0) = (1-\epsilon) \varphi(x, 0) + \epsilon^2 x(2\pi -x) < \varphi(x, 0) \leq \chordarcprofile(x, 0)
+\]
+for \(\epsilon \in (0, \epsilon_0) \subseteq (0, 1/2\pi)\) such that
+\[
+\epsilon^2 x(2\pi -x) \leq \varphi(x, 0) - (1-\epsilon) \varphi(x, 0) = \epsilon \varphi(x, 0).
+\]
+Such an \(\epsilon_0\) exists since
+\[
+\lim_{x \to 0} \frac{\varphi(x, 0)}{x (2\pi -x)} = \frac{1}{2\pi} \lim_{x \to 0} \frac{\varphi(x, 0)}{x} = \frac{1}{2\pi}
+\]
+and similarly for \(x \to 2\pi\) by symmetry.
+
+Hence we have initial strict inequality and strict inequality near \(\{0, 2\pi\}\). Thus if the inequality \(\varphi_{\epsilon}(x, \tau) < \chordarcprofile(x, \tau)\) is false, there exists a first \(\tau_0 > 0\) and an interior \(x_0 \in (0, 2\pi)\) where \(\varphi_{\epsilon}(x_0, \tau_0) = \chordarcprofile(x_0, \tau_0)\). That is we have strict inequality \(\varphi_{\epsilon}(x, \tau) < \chordarcprofile(x, \tau)\) for \((x, \tau) \in (0, 2\pi) \times [0, \tau_0)\) and weak inequality \(\varphi_{\epsilon}(x, \tau_0) \leq \chordarcprofile(x, \tau_0)\) for \(x \in (0, 2\pi)\) with equality at \((x_0, \tau_0)\).
+
+Thus at $(x_0,\tau_0)$, $\varphi_{\epsilon}$ supports \(\chordarcprofile\) from below, satisfying properties 1 and 2 in the definition of viscosity supersolutions in \Cref{thm:viscosity}. Since $\varphi_{\epsilon}$ is strictly concave, by lemma \ref{lem:concave_barrier}, $\tang_{p_0} \ne \tang_{q_0}$ and hence by \Cref{thm:viscosity}, at \((x_0, \tau_0)\)
+\[
+\partial_{\tau} \varphi_{\epsilon} - 4 \varphi_{\epsilon}'' - \left(\frac{L}{2\pi}\right)^2 (\varphi_{\epsilon} - x \varphi_{\epsilon}') \avg{\kappa^2} - \varphi_{\epsilon}' \frac{L}{2\pi} \int_{p_0}^{q_0} \kappa^2 ds \geq 0.
+\]
+For convenience, let us define the \emph{linear} operator
+\[
+\mathcal{L} (\varphi) = 4 \varphi'' + \left(\frac{L}{2\pi}\right)^2 (\varphi - x \varphi') \avg{\kappa^2} + \varphi' \frac{L}{2\pi} \int_{p_0}^{q_0} \kappa^2 ds
+\]
+so that
+\[
+(\partial_{\tau} - \mathcal{L}) \varphi_{\epsilon}|_{(x_0, \tau_0)} \geq 0.
+\]
+
+On the other hand, the assumptions on \(\varphi\) imply that
+\[
+\begin{split}
+(\partial_{\tau} - \mathcal{L}) \varphi_{\epsilon} &= (1-\epsilon) (\partial_{\tau} - \mathcal{L}) \varphi + \epsilon^2 (\partial_{\tau} - \mathcal{L}) [e^{-\lambda\tau} x(2\pi-x)] \\
+&\leq \epsilon^2  (\partial_{\tau} - \mathcal{L}) [e^{-\lambda\tau} x(2\pi-x)].
+\end{split}
+\]
+Thus at \((x_0, \tau_0)\) we have
+\[
+(\partial_{\tau} - \mathcal{L}) \varphi_{\epsilon}|_{(x_0, t_0)} \leq -\epsilon^2 e^{-\lambda \tau_0} \left(\lambda x_0(2\pi - x_0) + \mathcal{L} [x(2\pi-x)]|_{x_0}\right).
+\]
+From the argument above we know that \((x_0, \tau_0) \in [\bar{x}, 2\pi - \bar{x}] \times [0, \bar{\tau}]\) where \(x(x-2\pi) \geq \bar{x}(2\pi - \bar{x}) > 0\) has a positive lower bounded. Choose
+\[
+\lambda > \frac{\sup_{x \in [\bar{x}, 2\pi-\bar{x}]} \abs{\mathcal{L} [x(2\pi-x)]}}{\bar{x}(2\pi - \bar{x})}.
+\]
+Then \(\lambda\) depends only on \(\bar{x}\) (which only depends on \(\bar{\tau}\)) and is in particular independent of \((x_0, \tau_0)\) and
+\[
+\lambda x_0(2\pi - x_0) + \mathcal{L} [x(2\pi-x)]|_{x_0} > 0
+\]
+gives our contradiction.
+
+The last statement giving the curvature bound follows immediately from \Cref{prop:asymptotics} since both \(\varphi\) and \(\chordarcprofile\) have the same first order term.
 \end{proof}
 
 \section{Comparison Function}
