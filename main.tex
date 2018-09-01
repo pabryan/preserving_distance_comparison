@@ -131,9 +131,10 @@ By compactness of $\S^1\times \S^1$ (which parametrises the set of connected arc
 The next proposition gives the asymptotic behaviour of the chord-arc profile near the end point $x=0$, and so by symmetry also at the end point $x=2\pi$. Note also the scale invariance.
 
 \begin{prop}
+\label{prop:asymptotics}
 As $x\to 0$ the chord-arc profile satisfies
 \[
-\lim_{x\to 0} \frac{\chordarcprofile(x) - x}{x^3} = - \frac{L}{96\pi^2} \sup_{\S^1} \kappa^2.
+\lim_{x\to 0} \frac{\chordarcprofile(x) - x}{x^3} = - \frac{L^2}{96\pi^2} \sup_{\S^1} \kappa^2.
 \]
 \end{prop}
 
@@ -498,6 +499,7 @@ which is the required inequality when $\xi=0$.
 The chord-arc profile is scale invariant, but for curves evolving by the curve shortening flow, we must also account for the time scaling.
 
 \begin{defn}
+\label{defn:timeprofile}
 Let \(\gamma_t\) be a smooth, one-parameter family of curves defined on the interval \(t \in [0, T)\) and evolving by the curve shortening flow. The \emph{evolving} chord-arc profile is defined to be
 \[
 \chordarcprofile(x, \tau) = \chordarcprofile_{\gamma_{t(\tau)}} (x)
@@ -516,8 +518,8 @@ where
 Let $X: \S^1\times [0,T)$ be a solution of the flow \eqref{eq:flow}. For any \(x_0, t_0\), let $(p_0,q_0)$ be points such that $\tfrac{2\pi}{L(t_0)} d(p_0, q_0, t_0) = \chordarcprofile(x_0)$ and $x_0 = \frac{2\pi}{L(t_0)} \ell(p_0, q_0, t_0)$. The chord-arc profile is a viscosity super-solution of the following equation
 \[
 \begin{split}
-\partial_{\tau} Z &- 4 \xi(p_0, q_0) Z'' + 4(1-\xi(p_0,q_0)) \frac{1 - (Z')^2}{Z} \\
-& + (Z - x Z') \left(\frac{L}{2\pi}\right)^2 \avg{\kappa^2} + Z' \frac{L}{2\pi} \int_{p_0}^{q_0} \kappa^2 ds \geq 0.
+\partial_{\tau} Z & -4 Z'' + 4(1-\xi(p_0,q_0)) \frac{1 - (Z')^2}{Z} \\
+& - (Z - x Z') \left(\frac{L}{2\pi}\right)^2 \avg{\kappa^2} - Z' \frac{L}{2\pi} \int_{p_0}^{q_0} \kappa^2 ds \geq 0.
 \end{split}
 \]
 \end{thm}
@@ -566,7 +568,7 @@ By assumption, \(d_{t_0} (p_0, q_0)\) is minimised amongst all \((p, q)\) such t
 and hence equation \eqref{eq:tau_ineq} becomes
 \begin{equation}
 \label{eq:time_ineq}
-\partial_{\tau} Z \geq \frac{L}{2\pi} (-1)^\delta \sqrt{1-\cos^2\theta} [(-1)^{1+\xi}\kappa_{q_0} + \kappa_{p_0}] + \left(\frac{L}{2\pi}\right)^2 \avg{\kappa^2} (Z - x Z) + \frac{L}{2\pi} Z' \int_p^q \kappa^2 ds.
+\partial_{\tau} Z \geq \frac{L}{2\pi} (-1)^\delta \sqrt{1-\cos^2\theta} [(-1)^{1+\xi}\kappa_{q_0} + \kappa_{p_0}] + \left(\frac{L}{2\pi}\right)^2 \avg{\kappa^2} (Z - x Z') + \frac{L}{2\pi} Z' \int_p^q \kappa^2 ds.
 \end{equation}
 
 On the other hand, at $t=t_0$, the function $Z(-, t)$ is a lower support function of $\chordarcprofile$ at $x_0$ and so we can appeal to Theorem \ref{thm:spatial_viscosity} which says
