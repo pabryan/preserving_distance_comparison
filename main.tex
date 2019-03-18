@@ -42,11 +42,11 @@ We take the convention that \(\tang\) is the unit tangent and \(\nor\) is the \e
 \label{lem:basic_evolution}
 The following evolution equations hold:
 \begin{enumerate}
-\item \([\partial_t, \partial_s] = \kappa^2 \partial_s\)
-\item \(\partial_t ds = -\kappa^2 ds\)
+\item \([\partial_t, \partial_s] = \kappa(\kappa - h) \partial_s\)
+\item \(\partial_t ds = -\kappa(\kappa - h) ds\)
 \item \(\partial_t \tang = -\partial_s \kappa\nor\)
 \item \(\partial_t \nor = \partial_s \kappa \tang\)
-\item \(\partial_t \kappa = \partial_s^2 \kappa + \kappa^3\).
+\item \(\partial_t \kappa = \partial_s^2 \kappa + \kappa^2(\kappa - h)\).
 \end{enumerate}
 \end{lemma}
 
@@ -85,9 +85,9 @@ the unit vector pointing from \(p\) to \(q\).
 \label{lem:distance_evolution}
 
 \begin{align*}
-\partial_t d_t(p, q) &= -\kappa_q \inpr{\nor_q}{w} + \kappa_p \inpr{\nor_p}{w} \\
-\partial_t \ell_t(p, q) &= - \int_p^q \kappa^2 ds \\
-\partial_t L &= - \int_{\gamma} \kappa^2 ds
+\partial_t d_t(p, q) &= -(\kappa_q-h) \inpr{\nor_q}{w} + (\kappa_p-h) \inpr{\nor_p}{w} \\
+\partial_t \ell_t(p, q) &= - \int_p^q \kappa(\kappa-h) ds \\
+\partial_t L &= - \int_{\gamma} \kappa(\kappa-h) ds
 \end{align*}
 \end{lemma}
 
@@ -95,15 +95,16 @@ the unit vector pointing from \(p\) to \(q\).
 From the flow equation \eqref{eq:flow}, we obtain
 \[
 \begin{split}
-\partial_t \inpr{\gamma(q) - \gamma(p)}{\gamma(q) - \gamma(p)} &= 2 \inpr{-\kappa(q) \nor(q)}{\gamma(q) - \gamma(p)} \\
-&\quad  - 2 \inpr{-\kappa(p) \nor(p)}{\gamma(q) - \gamma(p)}.
+\partial_t \inpr{\gamma(q) - \gamma(p)}{\gamma(q) - \gamma(p)} &= 2 \inpr{-(\kappa(q)-h) \nor(q)}{\gamma(q) - \gamma(p)} \\
+&\quad  - 2 \inpr{-(\kappa(p)-h) \nor(p)}{\gamma(q) - \gamma(p)} \\
+&= 2 d\left[-\inpr{(\kappa(q)-h)\nor(q)}{w} + \inpr{(\kappa(p)-h)\nor(p)}{w}\right]
 \end{split}
 \]
-The evolution of \(d = \left(\inpr{\gamma(q) - \gamma(p)}{\gamma(q) - \gamma(p)}\right)^{1/2}\) follows by the chain rule and the definition of \(w\).
+The evolution of \(d = \left(\inpr{\gamma(q) - \gamma(p)}{\gamma(q) - \gamma(p)}\right)^{1/2}\) follows by the chain rule.
 
 Using the evolution of \(ds\) from Lemma \ref{lem:basic_evolution},
 \[
-\partial_t \ell(p,q) = \partial_t \int_p^q ds_t = -\int_p^q \kappa^2 ds
+\partial_t \ell(p,q) = \partial_t \int_p^q ds_t = -\int_p^q \kappa(\kappa-h) ds
 \]
 \end{proof}
 
@@ -241,7 +242,7 @@ For the second variation, we first differentiate $w$:
 &= -\frac{1}{d}\left(\tang_p - \inpr{w}{\tang_p} w\right).
 \end{split}
 \]
-and similarly for $\partial_q w$ (again with the sign changed).  Putting this together with the Frenet-Serret formula $\partial_p T_p = -\kappa_p \nor_p$ (the $-$ coming from our choice of outer unit normal and the convention that convex curves have positive curvature) then gives
+and similarly for $\partial_q w$ (again with the sign changed).  Putting this together with the Frenet-Serret formula $\partial_p T_p = -\kappa_p \nor_p$ in equation \eqref{eq:fs} then gives
 \[
 d_{pp} = \inpr{\frac{1}{d}\left(\tang_p - \inpr{w}{\tang_p} w\right)}{\tang_p} + \inpr{w}{\kappa_p \nor_p} = \frac{1}{d}\left(1 - \inpr{w}{\tang_p}^2\right) + \inpr{w}{\kappa_p \nor_p}.
 \]
