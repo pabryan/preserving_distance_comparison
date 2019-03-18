@@ -520,7 +520,7 @@ Let $X: \S^1\times [0,T)$ be a solution of the flow \eqref{eq:flow}. For any \(x
 \[
 \begin{split}
 \partial_{\tau} Z & -4 Z'' + 4(1-\xi(p_0,q_0)) \frac{1 - (Z')^2}{Z} \\
-& - (Z - x Z') \left(\frac{L}{2\pi}\right)^2 \avg{\kappa^2} - Z' \frac{L}{2\pi} \int_{p_0}^{q_0} \kappa^2 ds \geq 0.
+& - (Z - x Z') \left(\frac{L}{2\pi}\right)^2 \avg{\kappa(\kappa-h)} - Z' \frac{L}{2\pi} \int_{p_0}^{q_0} \kappa(\kappa-h) ds + ((-1)^{\xi+1} + 1)h \geq 0.
 \end{split}
 \]
 \end{thm}
@@ -555,10 +555,10 @@ satisfies $\partial_{\tau} \Phi \leq 0$ at $(p_0, q_0, \tau_0)$. That is,
 Using the time variation formula from \Cref{lem:distance_evolution}, at \((p_0, q_0, t_0)\),
 \[
 \begin{split}
-\partial_t \left[\frac{2\pi}{L} d\right] - Z' \partial_t \left[\frac{2\pi}{L}\ell\right] &= \frac{2\pi}{L}\left[-\kappa_{q_0} \inpr{\nor_q}{w} + \kappa_{p_0} \inpr{\nor_p}{w}\right] + \frac{2\pi d}{L} \frac{1}{L} \int_{\gamma} \kappa^2 ds \\
-&\quad + \frac{2\pi}{L} Z' \int_p^q \kappa^2 ds - \frac{2\pi\ell}{L} \frac{Z'}{L} \int_{\gamma}\kappa^2 ds \\
-&= \frac{2\pi}{L}\left[-\kappa_{q_0} \inpr{\nor_q}{w} + \kappa_{p_0} \inpr{\nor_p}{w}\right] \\
-&\quad + \avg{\kappa^2} (Z - x Z') + \frac{2\pi}{L} Z' \int_p^q \kappa^2 ds.
+\partial_t \left[\frac{2\pi}{L} d\right] - Z' \partial_t \left[\frac{2\pi}{L}\ell\right] &= \frac{2\pi}{L}\left[-(\kappa_{q_0}-h) \inpr{\nor_q}{w} + (\kappa_{p_0}-h) \inpr{\nor_p}{w}\right] + \frac{2\pi d}{L} \frac{1}{L} \int_{\gamma} \kappa(\kappa-h) ds \\
+&\quad + \frac{2\pi}{L} Z' \int_p^q \kappa(\kappa-h) ds - \frac{2\pi\ell}{L} \frac{Z'}{L} \int_{\gamma}\kappa(\kappa-h) ds \\
+&= \frac{2\pi}{L}\left[-(\kappa_{q_0}-h) \inpr{\nor_q}{w} + (\kappa_{p_0}-h) \inpr{\nor_p}{w}\right] \\
+&\quad + \avg{\kappa(\kappa-h)} (Z - x Z') + \frac{2\pi}{L} Z' \int_p^q \kappa(\kappa-h) ds.
 \end{split}
 \]
 
@@ -566,10 +566,13 @@ By assumption, \(d_{t_0} (p_0, q_0)\) is minimised amongst all \((p, q)\) such t
 \[
 (-1)^{\xi+1} \inpr{w}{\nor_{q_0}} = \inpr{w}{\nor_{p_0}} =  (-1)^\delta \sqrt{1-\cos^2\theta}.
 \]
-and hence equation \eqref{eq:tau_ineq} becomes
+Hence equation \eqref{eq:tau_ineq} becomes
 \begin{equation}
 \label{eq:time_ineq}
-\partial_{\tau} Z \geq \frac{L}{2\pi} (-1)^\delta \sqrt{1-\cos^2\theta} [(-1)^{1+\xi}\kappa_{q_0} + \kappa_{p_0}] + \left(\frac{L}{2\pi}\right)^2 \avg{\kappa^2} (Z - x Z') + \frac{L}{2\pi} Z' \int_p^q \kappa^2 ds.
+\begin{split}
+\partial_{\tau} Z &\geq \frac{L}{2\pi} (-1)^\delta \sqrt{1-\cos^2\theta} [(-1)^{1+\xi}\kappa_{q_0} + \kappa_{p_0} - ((-1)^{1+\xi} + 1)h] \\
+&\quad + \left(\frac{L}{2\pi}\right)^2 \avg{\kappa(\kappa-h)} (Z - x Z') + \frac{L}{2\pi} Z' \int_p^q \kappa(\kappa-h) ds.
+\end{split}
 \end{equation}
 
 On the other hand, at $t=t_0$, the function $Z(-, t)$ is a lower support function of $\chordarcprofile$ at $x_0$ and so we can appeal to Theorem \ref{thm:spatial_viscosity} which says
