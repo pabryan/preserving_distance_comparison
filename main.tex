@@ -483,67 +483,99 @@ where
 Let $X: \S^1\times [0,T)$ be a solution of the flow \eqref{eq:flow}. For any \(x_0, t_0\), let $(p_0,q_0)$ be points such that $\tfrac{2\pi}{L(t_0)} d(p_0, q_0, t_0) = \chordarcprofile(x_0)$ and $x_0 = \frac{2\pi}{L(t_0)} \ell(p_0, q_0, t_0)$. The chord-arc profile is a viscosity super-solution of the following equation
 \[
 \begin{split}
-\partial_{\tau} Z & -4 Z'' + 4(1-\xi(p_0,q_0)) \frac{1 - (Z')^2}{Z} \\
-& - (Z - x Z') \left(\frac{L}{2\pi}\right)^2 \avg{\kappa(\kappa-h)} - Z' \frac{L}{2\pi} \int_{p_0}^{q_0} \kappa(\kappa-h) ds + ((-1)^{\xi+1} + 1)h \geq 0.
+\partial_{\tau} Z & \geq 4 Z'' + \left(\frac{L}{2\pi}\right)^2  \avg{\kappa^2} (Z - x Z') + \frac{L}{2\pi} \int_{p_0}^{q_0} \kappa^2 ds Z' - 4\xi \frac{1 - (Z')^2}{Z} \\
+&\quad - \left[(-1)^{\delta+1} \sqrt{1-(Z')^2}((-1)^{\xi+1} + 1) + \avg{\kappa^2} (Z - x Z') + 2 Z'\arccos(Z')\right] \frac{Lh}{2\pi} .
 \end{split}
 \]
 \end{thm}
 
-Recall that this means that for any $(x_0,\tau_0)$, if $Z$ is a smooth function defined in a neighbourhood of $(x_0,\tau_0)$ such that
+Recall that this means that for any $(x_0,\tau_0)$, if $\varphi$ is a smooth function defined in a neighbourhood of $(x_0,\tau_0)$ such that
 \begin{enumerate}
-\item $Z(x_0, \tau_0) = \chordarcprofile (x_0, \tau_0)$
-\item $Z(x, \tau) \leq \chordarcprofile (x, \tau)$, $\tau \leq \tau_0$
+\item $\varphi(x_0, \tau_0) = \chordarcprofile (x_0, \tau_0)$
+\item $\varphi(x, \tau) \leq \chordarcprofile (x, \tau)$, $\tau \leq \tau_0$
 \end{enumerate}
-then $Z$ satisfies the inequality in the usual sense. Note that although we require $Z$ to support $\chordarcprofile$ for $x$ in a full neighbourhood of $x_0$, we only require $\tau$ to be in a "half-neighbourhood", i.e. $\tau\leq \tau_0$.
+then $\varphi$ satisfies the inequality in the usual sense. Note that although we require $\varphi$ to support $\chordarcprofile$ for $x$ in a full neighbourhood of $x_0$, we only require $\tau$ to be in a "half-neighbourhood", i.e. $\tau\leq \tau_0$.
 
 \begin{proof}
-Fix $(x_0, \tau_0)$ and let \(t_0 = t(\tau_0)\). Let $Z(x,\tau)$ be a smooth function defined in an open neighbourhood of $(x_0,\tau_0)$ and such that $Z(x_0, \tau_0) = \chordarcprofile(x_0, \tau_0)$ and $Z(x, \tau) \leq \chordarcprofile(x, \tau)$ for $\tau\leq \tau_0$. Once more, choose $(p_0,q_0)$ so that $\ell(p_0, q_0, t_0) = \frac{L(t_0)}{2\pi} x_0$ and $\chordarcprofile(x_0, t_0) = \frac{2\pi}{L(t_0)} d(p_0, q_0, t_0)$.
+Fix $(x_0, \tau_0)$ and let \(t_0 = t(\tau_0)\). Let $\varphi(x,\tau)$ be a smooth function defined in an open neighbourhood of $(x_0,\tau_0)$ and such that $\varphi(x_0, \tau_0) = \chordarcprofile(x_0, \tau_0)$ and $\varphi(x, \tau) \leq \chordarcprofile(x, \tau)$ for $\tau\leq \tau_0$.
 
 Then we have
 \[
-\frac{2\pi}{L(t(\tau))} d(p, q, t(\tau)) \geq \chordarcprofile\left(\frac{2\pi}{L(t(\tau))}\ell(p, q, t(\tau)), \tau\right) \geq Z\left(\frac{2\pi}{L(t(\tau))}\ell(p, q, t(\tau)), \tau\right)
+\frac{2\pi}{L(t(\tau))} d(p, q, t(\tau)) \geq \chordarcprofile\left(\frac{2\pi}{L(t(\tau))}\ell(p, q, t(\tau)), \tau\right) \geq \varphi\left(\frac{2\pi}{L(t(\tau))}\ell(p, q, t(\tau)), \tau\right)
 \]
-for $\tau\leq \tau_0$ and all $(p,q,\tau)$ in a neighbourhood of $(p_0,q_0,\tau_0)$ on which $Z$ is defined for all $x=\frac{2\pi}{L(t(\tau))} \ell(p,q,t(\tau))$. Moreover, we have equality at $(p_0, q_0, \tau_0)$ so that the smooth function
+for $\tau\leq \tau_0$ and all $(p,q,\tau)$ in a neighbourhood of $(p_0,q_0,\tau_0)$ on which $\varphi$ is defined for all $x=\frac{2\pi}{L(t(\tau))} \ell(p,q,t(\tau))$. Moreover, we have equality at $(p_0, q_0, \tau_0)$ so that the smooth function
 \[
-\Phi(p, q, \tau) = \tfrac{2\pi}{L(t(\tau))}d(p,q,t(\tau)) - Z\left(\frac{2\pi}{L(t(\tau))}\ell(p, q, t(\tau)), \tau\right)
+\Phi(p, q, \tau) = \tfrac{2\pi}{L(t(\tau))}d(p,q,t(\tau)) - \varphi\left(\frac{2\pi}{L(t(\tau))}\ell(p, q, t(\tau)), \tau\right)
 \]
 satisfies $\partial_{\tau} \Phi \leq 0$ at $(p_0, q_0, \tau_0)$. That is,
 \begin{equation}
 \label{eq:tau_ineq}
 \begin{split}
-0 &\geq \frac{\partial t}{\partial \tau} \partial_t \left[\frac{2\pi}{L} d\right] - \frac{\partial t}{\partial \tau} Z' \partial_t \left[\frac{2\pi}{L}\ell\right] - \partial_{\tau} Z \\
-&= \left(\frac{L}{2\pi}\right)^2 \left(\partial_t \left[\frac{2\pi}{L} d\right] - Z' \partial_t \left[\frac{2\pi}{L}\ell\right]\right) - \partial_{\tau} Z.
+0 &\geq \frac{\partial t}{\partial \tau} \partial_t \left[\frac{2\pi}{L} d\right] - \frac{\partial t}{\partial \tau} \varphi' \partial_t \left[\frac{2\pi}{L}\ell\right] - \partial_{\tau} \varphi \\
+&= \left(\frac{L}{2\pi}\right)^2 \left(\partial_t \left[\frac{2\pi}{L} d\right] - \varphi' \partial_t \left[\frac{2\pi}{L}\ell\right]\right) - \partial_{\tau} \varphi.
 \end{split}
 \end{equation}
 
 Using the time variation formula from \Cref{lem:distance_evolution}, at \((p_0, q_0, t_0)\),
 \[
 \begin{split}
-\partial_t \left[\frac{2\pi}{L} d\right] - Z' \partial_t \left[\frac{2\pi}{L}\ell\right] &= \frac{2\pi}{L}\left[-(\kappa_{q_0}-h) \inpr{\nor_q}{w} + (\kappa_{p_0}-h) \inpr{\nor_p}{w}\right] + \frac{2\pi d}{L} \frac{1}{L} \int_{\gamma} \kappa(\kappa-h) ds \\
-&\quad + \frac{2\pi}{L} Z' \int_p^q \kappa(\kappa-h) ds - \frac{2\pi\ell}{L} \frac{Z'}{L} \int_{\gamma}\kappa(\kappa-h) ds \\
+\partial_t \left[\frac{2\pi}{L} d\right] - \varphi' \partial_t \left[\frac{2\pi}{L}\ell\right] &= \frac{2\pi}{L}\left[-(\kappa_{q_0}-h) \inpr{\nor_q}{w} + (\kappa_{p_0}-h) \inpr{\nor_p}{w}\right] + \frac{2\pi d}{L} \frac{1}{L} \int_{\gamma} \kappa(\kappa-h) ds \\
+&\quad + \frac{2\pi}{L} \varphi' \int_p^q \kappa(\kappa-h) ds - \frac{2\pi\ell}{L} \frac{\varphi'}{L} \int_{\gamma}\kappa(\kappa-h) ds \\
 &= \frac{2\pi}{L}\left[-(\kappa_{q_0}-h) \inpr{\nor_q}{w} + (\kappa_{p_0}-h) \inpr{\nor_p}{w}\right] \\
-&\quad + \avg{\kappa(\kappa-h)} (Z - x Z') + \frac{2\pi}{L} Z' \int_p^q \kappa(\kappa-h) ds.
+&\quad + \avg{\kappa(\kappa-h)} (\varphi - x \varphi') + \frac{2\pi}{L} \varphi' \int_p^q \kappa(\kappa-h) ds.
 \end{split}
 \]
 
 By assumption, \(d_{t_0} (p_0, q_0)\) is minimised amongst all \((p, q)\) such that \(\ell_{t_0}(p, q) = \ell_{t_0}(p_0, q_0)\) and so we may use equation \eqref{eq:Nw} obtained for $\inpr{w}{\nor_{p_0}}$ and $\inpr{w}{\nor{q_0}}$ in the proof of \Cref{prop:spatial_var}:
 \[
-(-1)^{\xi+1} \inpr{w}{\nor_{q_0}} = \inpr{w}{\nor_{p_0}} =  (-1)^\delta \sqrt{1-\cos^2\theta}.
+(-1)^{\xi+1} \inpr{w}{\nor_{q_0}} = \inpr{w}{\nor_{p_0}} =  (-1)^{\delta+1} \sqrt{1-\cos^2\theta}.
 \]
 Hence equation \eqref{eq:tau_ineq} becomes
 \begin{equation}
 \label{eq:time_ineq}
 \begin{split}
-\partial_{\tau} Z &\geq \frac{L}{2\pi} (-1)^\delta \sqrt{1-\cos^2\theta} [(-1)^{1+\xi}\kappa_{q_0} + \kappa_{p_0} - ((-1)^{1+\xi} + 1)h] \\
-&\quad + \left(\frac{L}{2\pi}\right)^2 \avg{\kappa(\kappa-h)} (Z - x Z') + \frac{L}{2\pi} Z' \int_p^q \kappa(\kappa-h) ds.
+\partial_{\tau} \varphi &\geq \frac{L}{2\pi} (-1)^{\delta+1} \sqrt{1-\cos^2\theta} [(-1)^{\xi}\kappa_{q_0} + \kappa_{p_0} - ((-1)^{\xi} + 1)h] \\
+&\quad + \left(\frac{L}{2\pi}\right)^2 \avg{\kappa(\kappa-h)} (\varphi - x \varphi') + \frac{L}{2\pi} \varphi' \int_p^q \kappa(\kappa-h) ds.
 \end{split}
 \end{equation}
 
-On the other hand, at $t=t_0$, the function $Z(-, t)$ is a lower support function of $\chordarcprofile$ at $x_0$ and so we can appeal to Theorem \ref{thm:spatial_viscosity} which says
+Now let \(Z\) denote the upper barrier for \(\chordarcprofile_{\gamma(t_0)}\) at \(x_0\) whose existence is guaranteed by Theorem \ref{thm:barrier}. Then we have
 \[
--4Z'' + 4(1-\xi(p_0,q_0)) \frac{1 - (Z')^2}{Z} \geq (-1)^{\delta+1} \frac{L}{2\pi} \sqrt{1 - (Z')^2} \left[\kappa_{p_0} + (-1)^{1+\xi} \kappa_{q_0}\right].
+Z(x) \geq \chordarcprofile(x, \tau_0) \geq \varphi(x, \tau_0), \quad Z(x_0) = \chordarcprofile(x_0, \tau_0) = \varphi(x_0, \tau_0).
 \]
-The proof is completed by combining with equation \eqref{eq:time_ineq} while noting the change of \((-1)^{\delta}\) in equation \eqref{eq:time_ineq} to \((-1)^{\delta + 1} = -(-1)^{\delta}\) and recalling that \Cref{thm:barrier} gives \(Z' = \cos\theta\).
+Thus \(x_0\) is a local minimum of \(Z - \varphi\) and by using Theorem \ref{thm:barrier} we have
+\[
+\varphi'(x_0) = Z'(x_0) = \cos\theta
+\]
+and
+\[
+\begin{split}
+\varphi'' &\leq Z'' \leq \frac{L}{2\pi}\frac{(-1)^{\delta+1}\sqrt{1-(Z')^2}}{4} (\kappa_{p_0} + (-1)^{\xi}\kappa_{q_0}) + \xi \frac{1-(Z')^2}{Z} \\
+&= \frac{L}{2\pi}\frac{(-1)^{\delta+1}\sqrt{1-(\varphi')^2}}{4} (\kappa_{p_0} + (-1)^{\xi}\kappa_{q_0}) + \xi \frac{1-(\varphi')^2}{\varphi}.
+\end{split}
+\]
+Substituting into equation \label{eq:time_ineq} gives
+\begin{equation}
+\label{eq:spacetime_ineq}
+\begin{split}
+\partial_{\tau} \varphi &\geq 4\varphi'' + (-1)^{\delta} \sqrt{1-(\varphi')^2} [(-1)^{\xi} + 1]\frac{Lh}{2\pi} - 4\xi \frac{1-(\varphi')^2}{\varphi} \\
+&\quad + \left(\frac{L}{2\pi}\right)^2 \avg{\kappa(\kappa-h)} (\varphi - x \varphi') + \frac{L}{2\pi} \varphi' \int_p^q \kappa(\kappa-h) ds.
+\end{split}
+\end{equation}
+
+For the global curvature integral,
+\[
+\avg{\kappa(\kappa-h)} = \frac{1}{L} \int_{\gamma} \kappa^2 - h \kappa ds = \avg{\kappa^2} - \frac{2\pi}{L} h
+\]
+since \(h\) is independent of \(s\) and the total curvature of a simple, closed plane curve is \(2\pi\).
+
+For the other curvature integral
+\[
+\int_p^q \kappa(\kappa-h) = \int_p^q \kappa^2 ds - 2 h \theta = \int_p^q \kappa^2 - 2h\arccos(\varphi')
+\]
+since \(w\) bisects \(\tang_p\) and \(\tang_q\) hence the angle between \(\tang_p\) and \(\tang_q\) is \(2\theta\).
+
+Substitution into equation \eqref{eq:spacetime_ineq} completes the proof.
 \end{proof}
 
 \section{Comparison Theorem}
