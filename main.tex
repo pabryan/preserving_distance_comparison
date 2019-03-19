@@ -168,20 +168,20 @@ The main techniques we employ in this paper to understand the chord-arc profile 
 Let $\theta(p,q)$ denote the angle between $\tang_{p}$ and $w = (1/d)(X(q) - X(p))$ so that $\inpr{w}{\tang_p} = \cos\theta$. Define the following "indicator" functions,
 \begin{align*}
 \xi(p, q) &= \begin{cases}
-1,& \tang_{p} \ne \tang_{q} \\
-0,& \tang_{p} = \tang_{q}
+0,& \tang_{p} \ne \tang_{q} \\
+1,& \tang_{p} = \tang_{q}
 \end{cases} \\
 \intertext{and}
 \delta(p, q) &= \begin{cases}
-1,& \inpr{w}{\nor_{p}} > 0 \\
-0,& \inpr{w}{\nor_{p}} < 0.
+0,& \inpr{w}{\nor_{p}} < 0 \\
+1,& \inpr{w}{\nor_{p}} > 0.
 \end{cases}
 \end{align*}
 Also define the matrices
 \begin{align*}
-K(p,q) &= (-1)^{\delta}\begin{pmatrix}
+K(p,q) &= (-1)^{\delta+1}\begin{pmatrix}
 \kappa_{p} & 0 \\
-0 & (-1)^{\xi +1} \kappa_{q}
+0 & (-1)^{\xi} \kappa_{q}
 \end{pmatrix} \\
 M_{\pm} &= \begin{pmatrix}
 1 & \pm 1 \\
@@ -191,8 +191,8 @@ M_{\pm} &= \begin{pmatrix}
 and
 \[
 M(p,q) = \begin{cases}
-M_+,& \xi(p,q) = 1 \\
-M_-,& \xi(p,q) = 0.
+M_+,& \xi(p,q) = 0 \\
+M_-,& \xi(p,q) = 1.
 \end{cases}
 \]
 We think of $K$, $M_+$ and $M_-$ as linear operators acting on $T(\S^1\times\S^1)$ written with respect to the basis $\{\tang_p, \tang_q\}$. Observe that $M_+$ and $M_-$ are simultaneously diagonalised by the eigenvectors 
@@ -208,6 +208,24 @@ with corresponding eigenvalues
 \lambda^+_2 &= \lambda^-_1 = 0.
 \end{split}
 \end{equation} 
+
+\begin{rem}
+\label{rem:convex}
+In the case of strictly convex curves \(\gamma\), the unit tangent map \(\tang : \S^1 \to \S^1\) is a diffeomorphism so that \(\tang_p \ne \tang_q\) for \(p \ne q\). Thus \(\xi = 0\). Moreover, since \(\gamma\) encloses a convex body and the line \(\gamma(p) + t w(p, q)\) with \(0 \leq t \leq d(p, q)\) joins \(\gamma(p)\) to \(\gamma(q)\) the entire line is contained in the region enclosed by \(\gamma\). Therefore \(w\) points inward and since \(\nor\) is the outer unit normal, \(\inpr{w}{N_p} < 0\) and \(\delta = 0\). Thus in the convex case,
+\[
+K = -\begin{pmatrix}
+\kappa_{p} & 0 \\
+0 & \kappa_{q}
+\end{pmatrix}
+\]
+is negative definite and
+\[
+M = M_+ = \begin{pmatrix}
+1 & 1 \\
+1 & 1
+\end{pmatrix}.
+\]
+\end{rem}
 
 \begin{prop}[Spatial Variation]
 \label{prop:spatial_var}
@@ -270,17 +288,17 @@ so that
 \[
 \cos\theta = \inpr{\tang_p}{w} = \inpr{\tang_q}{w}.
 \]
-Thus either $\tang_{p_0} = \tang_{q_0}$, or $\tang_{p_0} \ne \tang_{q_0}$ and $w$ bisects $\tang_{p_0}$ and $\tang_{q_0}$. These cases are recorded by the indicator function $\xi$ equal to \(0\) in the first case and \(1\) in the second. Moreover we have $\inpr{w}{\nor_{p_0}} = \inpr{w}{\nor_{q_0}}$ if \(\xi = 0\) and $\inpr{w}{\nor_{p_0}} = -\inpr{w}{\nor_{q_0}}$ if \(\xi=1\) so that in either case, $\inpr{w}{\nor_{p_0}} = (-1)^{\xi + 1} \inpr{w}{\nor_{q_0}}$. We can also deduce that $\inpr{w}{\nor_{p_0}} = \pm \sqrt{1-\cos^2\theta}$ with the sign depending on whether $w$ points into or out of $\gamma_{t_0}$ at $p_0$ which we can then write as
+Thus either $\tang_{p_0} = \tang_{q_0}$, or $\tang_{p_0} \ne \tang_{q_0}$ and $w$ bisects $\tang_{p_0}$ and $\tang_{q_0}$. These cases are recorded by the indicator function $\xi$ equal to \(1\) in the first case and \(0\) in the second. Moreover we have $\inpr{w}{\nor_{p_0}} = \inpr{w}{\nor_{q_0}}$ if \(\xi = 1\) and $\inpr{w}{\nor_{p_0}} = -\inpr{w}{\nor_{q_0}}$ if \(\xi=0\) so that in either case, $\inpr{w}{\nor_{p_0}} = (-1)^{\xi + 1} \inpr{w}{\nor_{q_0}}$. We can also deduce that $\inpr{w}{\nor_{p_0}} = \pm \sqrt{1-\cos^2\theta}$ with the sign depending on whether $w$ points into or out of $\gamma_{t_0}$ at $p_0$ which we can then write as
 \[
-\inpr{w}{\nor_{p_0}} = (-1)^\delta \sqrt{1-\cos^2\theta}.
+\inpr{w}{\nor_{p_0}} = (-1)^{\delta+1} \sqrt{1-\cos^2\theta}.
 \]
 Succinctly, we have
 \begin{equation}
 \label{eq:Nw}
-(-1)^{\xi+1} \inpr{w}{\nor_{q_0}} = \inpr{w}{\nor_{p_0}} =  (-1)^\delta \sqrt{1-\cos^2\theta}.
+(-1)^{\xi+1} \inpr{w}{\nor_{q_0}} = \inpr{w}{\nor_{p_0}} =  (-1)^{\delta+1} \sqrt{1-\cos^2\theta}.
 \end{equation}
 
-\emph{Case 1}: $\tang_{p_0} \ne \tang_{q_0}$ ($\xi = 1$).
+\emph{Case 1}: $\tang_{p_0} \ne \tang_{q_0}$ ($\xi = 0$).
 
 Since $w$ bisects $\tang_{p_0}$ and $\tang_{q_0}$, applying the double angle formula, we also have 
 \[
@@ -288,8 +306,8 @@ Since $w$ bisects $\tang_{p_0}$ and $\tang_{q_0}$, applying the double angle for
 \]
 Substituting this expression and equation \eqref{eq:Nw} into the second variation of $d$ \eqref{eq:d_second_var} gives
 \begin{align*}
-D^2d_{(p_0,q_0)} &=  \left((-1)^{\delta} \sqrt{1-\cos^2\theta}\kappa_{p_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{p_0} \otimes \omega_{p_0} \\
-&+ \left((-1)^{\delta} \sqrt{1-\cos^2\theta} \kappa_{q_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{q_0} \otimes \omega_{q_0} \\
+D^2d_{(p_0,q_0)} &=  \left((-1)^{\delta+1} \sqrt{1-\cos^2\theta}\kappa_{p_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{p_0} \otimes \omega_{p_0} \\
+&+ \left((-1)^{\delta+1} \sqrt{1-\cos^2\theta} \kappa_{q_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{q_0} \otimes \omega_{q_0} \\
 &+ \left(\frac{1}{d}(1 - \cos^2\theta) \right) \left(\omega_{p_0} \otimes \omega_{q_0} + \omega_{q_0} \otimes \omega_{p_0} \right)
 \end{align*}
 which gives the desired expression for $\xi=0$ when expressed in matrix form.
@@ -298,8 +316,8 @@ which gives the desired expression for $\xi=0$ when expressed in matrix form.
 
 In this case, we have $\inpr{\tang_{p_0}}{\tang_{q_0}} = 1$. Substituting this and equation \eqref{eq:Nw} into the second variation of $d$ \eqref{eq:d_second_var} gives
 \begin{align*}
-D^2d_{(p_0,q_0)} &=  \left((-1)^{\delta} \sqrt{1-\cos^2\theta}\kappa_{p_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{p_0} \otimes \omega_{p_0} \\
-&+ \left(-(-1)^{\delta} \sqrt{1-\cos^2\theta} \kappa_{q_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{q_0} \otimes \omega_{q_0} \\
+D^2d_{(p_0,q_0)} &=  \left((-1)^{\delta+1} \sqrt{1-\cos^2\theta}\kappa_{p_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{p_0} \otimes \omega_{p_0} \\
+&+ \left(-(-1)^{\delta+1} \sqrt{1-\cos^2\theta} \kappa_{q_0} + \frac{1}{d}(1 - \cos^2\theta) \right) \omega_{q_0} \otimes \omega_{q_0} \\
 &- \left(\frac{1}{d}(1 - \cos^2\theta) \right) \left(\omega_{p_0} \otimes \omega_{q_0} + \omega_{q_0} \otimes \omega_{p_0} \right)
 \end{align*}
 which gives the desired expression for $\xi=1$ when expressed in matrix form.
@@ -314,7 +332,7 @@ If there exists a strictly concave, positive function $\phi: (0, 2\pi) \to \R$ t
 \end{lemma}
 
 \begin{rem}
-In particular, if $\gamma$ is strictly convex, then already \(T=\tang_{p_0} \ne \tang_{q_0}\) whenever \(p_0 \ne q_0\). The lemma then says that the in the presence of a concave lower barrier, we obtain the same conclusion and we see this \emph{local concavity} of the profile gives convex like behaviour of the corresponding point. \Cref{prop:barrier} below gives a converse where convexity of the curve implies concavity of the profile. Thus we see a close relationship between convexity of the curve and concavity of the profile (even in a local sense).
+In particular, if $\gamma$ is strictly convex, then already \(T=\tang_{p_0} \ne \tang_{q_0}\) whenever \(p_0 \ne q_0\). The lemma then says that the in the presence of a concave lower barrier, we obtain the same conclusion and we see this \emph{local concavity} of the profile gives convex like behaviour of the corresponding point. \Cref{thm:barrier} below gives a converse where convexity of the curve implies concavity of the profile. Thus we see a close relationship between convexity of the curve and concavity of the profile (even in a local sense).
 \end{rem}
 
 \begin{proof}
@@ -342,24 +360,24 @@ Thus we have a contradiction.
 
 Next, from these variational formulae, we obtain a (weak) differential inequality for $\chordarcprofile$.
 
-\begin{prop}
-\label{prop:barrier}
+\begin{thm}
+\label{thm:barrier}
 The chord-arc profile $\chordarcprofile$ satisfies the following differential inequality in the support (or barrier, or sometimes Calabi) sense
 \begin{align*}
 Z'_- &\leq \cos\theta \leq Z'_+, \\
-Z'' &\leq \frac{L}{2\pi}\frac{(-1)^{\delta}\sqrt{1-\cos^2\theta}}{4} (\kappa_{p_0} + (-1)^{\xi+1}\kappa_{q_0}) + \frac{L}{2\pi} (1-\xi) \frac{1-\cos^2\theta}{d(p_0,q_0)}.
+Z'' &\leq \frac{L}{2\pi}\frac{(-1)^{\delta+1}\sqrt{1-\cos^2\theta}}{4} (\kappa_{p_0} + (-1)^{\xi}\kappa_{q_0}) + \xi \frac{L}{2\pi} \frac{1-\cos^2\theta}{d(p_0,q_0)}.
 \end{align*}
 In particular, if $\gamma$ is convex, then
 \[
 Z'' \leq - \frac{L}{2\pi} \frac{\sqrt{1-\cos^2 \theta}}{4} (\kappa_{p_0} + \kappa_{q_0}) \leq 0
 \]
 and hence $\chordarcprofile$ is concave. If $\gamma$ is strictly convex, then $\chordarcprofile$ is strictly concave.
-\end{prop}
+\end{thm}
 
 Recall that the support inequality means for every $x_0 \in [0,2\pi]$ there exists a smooth function $Z$ defined in a neighbourhood of $x_0$ such that $Z(x) \geq \chordarcprofile$, $Z(x_0) = \chordarcprofile(x_0)$ and
 \begin{align*}
 Z' &= \cos \theta, \\
-Z'' &= \frac{(-1)^{\delta}\sqrt{1-\cos^2\theta}}{4} (\kappa_{p_0} + (-1)^{\xi+1}\kappa_{q_0}) + (1-\xi) \frac{1-\cos^2\theta}{d(p_0,q_0)}.
+Z'' &= \frac{(-1)^{\delta+1}\sqrt{1-\cos^2\theta}}{4} (\kappa_{p_0} + (-1)^{\xi}\kappa_{q_0}) + \xi \frac{1-\cos^2\theta}{d(p_0,q_0)}.
 \end{align*}
 
 \begin{proof}
@@ -402,25 +420,25 @@ Z''(x_0) = \frac{L}{8\pi} \left[\sqrt{1-\cos^2\theta} K (v_2) + \frac{1-\cos^2\t
 \]
 For the first term we have
 \begin{align*}
-\sqrt{1-\cos^2\theta} K (v_2) &= \sqrt{1-\cos^2\theta} (-1)^{\delta} 
+\sqrt{1-\cos^2\theta} K (v_2) &= \sqrt{1-\cos^2\theta} (-1)^{\delta+1} 
 \begin{pmatrix}
 1 & -1
 \end{pmatrix}
 \begin{pmatrix}
 \kappa_{p_0} & 0 \\
-0 & (-1)^{\xi + 1} \kappa_{q_0}
+0 & (-1)^{\xi} \kappa_{q_0}
 \end{pmatrix}
 \begin{pmatrix}
 1 \\
 -1
 \end{pmatrix} \\
-&= \sqrt{1-\cos^2\theta} (-1)^{\delta} (\kappa_{p_0} + (-1)^{\xi + 1} \kappa_{q_0})
+&= \sqrt{1-\cos^2\theta} (-1)^{\delta+1} (\kappa_{p_0} + (-1)^{\xi} \kappa_{q_0})
 \end{align*}
 which is the first term in the second equation of the proposition.
 
-For the second term, we treat the two cases $\xi=1$ and $\xi=0$ separately. In the first case, we just observe that $v_2$ is a null eigenvector of $M=M_+$ so that the second term vanishes when $\xi=1$. 
+For the second term, we treat the two cases $\xi=1$ and $\xi=0$ separately. In the first case, we just observe that $v_2$ is a null eigenvector of $M=M_+$ so that the second term vanishes when $\xi=0$. 
 
-For case two, we have $M=M_-$ and we can't apply the same trick to kill the second term, since this would require we use the null eigenvector $v_1$ of $M_-$ in the definition of the curve $\alpha$. But recall that from the proof of Proposition \ref{prop:spatial_var}, $v_1$ is annihilated by $d\ell$ and so we can't invert $\ell\circ\alpha$ in this situation. Instead, we make do again with using $v_2$, which has length $\sqrt{2}$ and is an eigenvector of $M_-$ with eigenvalue $2$ so that $M_- (v_2) = 4$ which leads to the required second term when $\xi=0$.
+For case two, we have $M=M_-$ and we can't apply the same trick to kill the second term, since this would require we use the null eigenvector $v_1$ of $M_-$ in the definition of the curve $\alpha$. But recall that from the proof of Proposition \ref{prop:spatial_var}, $v_1$ is annihilated by $d\ell$ and so we can't invert $\ell\circ\alpha$ in this situation. Instead, we make do again with using $v_2$, which has length $\sqrt{2}$ and is an eigenvector of $M_-$ with eigenvalue $2$ so that $M_- (v_2) = 4$ which leads to the required second term when $\xi=1$.
 
 Finally, if $\gamma$ is convex, then $\kappa \geq 0$ and $\tang_{p_0} \ne \tang_{q_0}$ so that $\xi = 1$. Moreover, since the closure of the region bounded by $\kappa$ is a convex body, and since $X(p_0), X(q_0)$ lie in the closure of this region, for any $u \in [0,1]$, we must have that $X(p_0) + u(X(q_0) - X(p_0))$ also lies in this region so that $(X(q_0) - X(p_0))$ (and hence $w = \tfrac{1}{d(p_0,q_0)} (X(q_0) - X(p_0))$) points inward ensuring that $\delta = 1$. Therefore, at every point $x_0$, the function $Z$ satisfies
 \[
@@ -439,8 +457,8 @@ This is a strictly concave function whose square is not concave. This seems rela
 
 To end this section, we derive a viscosity equation for the chord-arc profile of $\gamma$. In the next section, we couple this with time variations to obtain a viscosity equation for the chord-arc profile of a simple closed curve evolving by the flow \ref{eq:flow} which forms the basis of the comparison theorem \ref{thm:comparison}. 
 
-\begin{thm}
-\label{thm:spatial_viscosity}
+\begin{cor}
+\label{cor:spatial_viscosity}
 Let $(p_0,q_0)$ be points such that $\tfrac{2\pi}{L} d(p_0, q_0) = \chordarcprofile\left(\frac{2\pi}{L}\ell(p_0, q_0)\right)$. The chord-arc profile $\chordarcprofile$ of a smooth, simple, closed curve satisfies the following inequality in the viscosity-sense:
 \[
 -\frac{4Z''}{\sqrt{1 - (Z')^2}} + 4\sqrt{1-\xi(p_0,q_0)} \frac{1 - (Z')^2}{Z} \geq \frac{L}{2\pi} (-1)^{\delta(p_0,q_0)+1} \left[\kappa_{p_0} + (-1)^{1+\xi(p_0,q_0)} \kappa_{q_0}\right].
@@ -450,7 +468,7 @@ Let $(p_0,q_0)$ be points such that $\tfrac{2\pi}{L} d(p_0, q_0) = \chordarcprof
 This means that for any $x_0 \in (0,2\pi)$, if $Z$ is a smooth lower supporting function at $x_0$, i.e. $Z$ is defined in a neighbourhood of $x_0$ such that $Z(x_0) = \chordarcprofile (x_0)$ and $Z(x) \leq \chordarcprofile (x)$, then $Z$ satisfies the inequality in the usual sense.
 
 \begin{proof}
-Fix $x_0 \in (0,2\pi)$. Let $Z(x)$ be a smooth function defined in neighbourhood of $x_0$ and such that $Z(x_0) = \chordarcprofile(x_0)$ and $Z(x) \leq \chordarcprofile(x)$. As in \Cref{prop:barrier}, choose $(p_0,q_0)$ with $p_0\ne q_0$ so that $\ell(p_0, q_0) = \tfrac{L}{2\pi} x_0$ and $\chordarcprofile(x_0) = \tfrac{2\pi}{L}d(p_0, q_0)$.  Then we have
+Fix $x_0 \in (0,2\pi)$. Let $Z(x)$ be a smooth function defined in neighbourhood of $x_0$ and such that $Z(x_0) = \chordarcprofile(x_0)$ and $Z(x) \leq \chordarcprofile(x)$. As in \Cref{thm:barrier}, choose $(p_0,q_0)$ with $p_0\ne q_0$ so that $\ell(p_0, q_0) = \tfrac{L}{2\pi} x_0$ and $\chordarcprofile(x_0) = \tfrac{2\pi}{L}d(p_0, q_0)$.  Then we have
 \[
 \frac{2\pi}{L} d(p, q) \geq \chordarcprofile\left(\frac{2\pi}{L} \ell(p, q)\right) \geq Z\left(\frac{2\pi}{L}\ell(p, q)\right)
 \]
@@ -579,7 +597,7 @@ On the other hand, at $t=t_0$, the function $Z(-, t)$ is a lower support functio
 \[
 -4Z'' + 4(1-\xi(p_0,q_0)) \frac{1 - (Z')^2}{Z} \geq (-1)^{\delta+1} \frac{L}{2\pi} \sqrt{1 - (Z')^2} \left[\kappa_{p_0} + (-1)^{1+\xi} \kappa_{q_0}\right].
 \]
-The proof is completed by combining with equation \eqref{eq:time_ineq} while noting the change of \((-1)^{\delta}\) in equation \eqref{eq:time_ineq} to \((-1)^{\delta + 1} = -(-1)^{\delta}\) and recalling that \Cref{prop:barrier} gives \(Z' = \cos\theta\).
+The proof is completed by combining with equation \eqref{eq:time_ineq} while noting the change of \((-1)^{\delta}\) in equation \eqref{eq:time_ineq} to \((-1)^{\delta + 1} = -(-1)^{\delta}\) and recalling that \Cref{thm:barrier} gives \(Z' = \cos\theta\).
 \end{proof}
 
 \section{Comparison Theorem}
