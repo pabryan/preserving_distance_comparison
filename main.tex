@@ -26,29 +26,29 @@ We consider closed curves in the plane evolving by the flow
 \begin{equation}
 \label{eq:flow}
 \tag{FLOW}
-\partial_t X = -(\kappa - h) \nor
+\partial_t X = -(\kappa - h(\gamma_t)) \nor
 \end{equation}
 where \(X : \S^1 \times [0, T)\) is a one-parameter family of immersions with unit normal field \(\nor\), curvature \(\kappa\), \(\gamma_t = \gamma(\S^1, 2)\) is the image of \(X_t = X(\cdot, t)\).
 
-The term \(h\) is a combination of local and global terms. That is,
+The term \(h\) is a global term. That is,
 \[
-h : C^{\infty} (\S^1 \to \R^2) \to C^{\infty} (\S^1 \to \R^2)
+h : C^{\infty} (\S^1 \to \R^2) \to \R
 \]
-depends on \(X\) and it's derivatives along with global terms which we may think of as functionals \(C^{\infty} (\S^1 \to \R^2) \to \R\). For geometric quantities, \(h\) depends on \(\kappa\) and typically integrals of the form \(\int_{\S^1} f(\kappa) ds\), but may also involve geometrically invariant integrals of the support function \(\sfn = \inpr{X}{\nor}\) such as in the total enclosed area \(A = \tfrac{1}{2} \int_{\S^1} \sfn ds\). We may also allow \(h\) to be \emph{anisotropic} so that it depends pointwise on \(X\) and \(\nor\). The support function is such a quantity.
+is a functional taking curves to real numbers. For geometric quantities, since the only pointwise invariant is the curvature \(\kappa\), \(h\) will typically be an integral of \(\kappa\) of the form \(\int_{\S^1} f(\kappa) ds\) for some smooth function \(f\). But it may also involve geometrically invariant integrals such as of the support function \(\sfn = \inpr{X}{\nor}\) as in the total enclosed area \(A = \tfrac{1}{2} \int_{\S^1} \sfn ds\). We may also allow \(h\) to be \emph{anisotropic} so that \(h = \int_{\S^1} f(\kappa, X, \nor) ds\) and in particular, \(h = \int_{\S^1} f(\kappa, \sfn) ds\).
 
-In particular, the \emph{curve shortening flow} is given by
+Specific examples include the \emph{curve shortening flow}, given by
 \begin{equation}
 \label{eq:csf}
 \tag{CSF}
 h \equiv 0,
 \end{equation}
-\emph{length preserving curve shortening flow} is given by
+and the \emph{length preserving curve shortening flow}, given by
 \begin{equation}
 \label{eq:lpcsf}
 \tag{LPCSF}
 h = \frac{1}{2\pi} \int_{\S^1} \kappa^2 ds,
 \end{equation}
-while the \emph{enclosed area preserving curve shortening flow} is given by
+and the \emph{enclosed area preserving curve shortening flow} given by
 \begin{equation}
 \label{eq:apcsf}
 \tag{APCSF}
@@ -70,12 +70,12 @@ Let us define \(v = \abs{X'}\) where the prime denotes differentiation with resp
 \label{lem:basic_evolution}
 The following evolution equations hold:
 \begin{enumerate}
-\item \(\partial_t v = -k(k-h) v\).
+\item \(\partial_t v = -k(k-h) v\)
 \item \([\partial_t, \partial_s] = \kappa(\kappa - h) \partial_s\)
 \item \(\partial_t ds = -\kappa(\kappa - h) ds\)
-\item \(\partial_t \tang = -\partial_s (\kappa-h) \nor\)
-\item \(\partial_t \nor = \partial_s (\kappa-h) \tang\)
-\item \(\partial_t \kappa = \partial_s^2 (\kappa-h) + \kappa^2(\kappa - h)\).
+\item \(\partial_t \tang = -\partial_s \kappa\nor\)
+\item \(\partial_t \nor = \partial_s \kappa \tang\)
+\item \(\partial_t \kappa = \partial_s^2 \kappa + \kappa^2(\kappa - h)\).
 \end{enumerate}
 \end{lemma}
 
@@ -114,7 +114,7 @@ the unit vector pointing from \(p\) to \(q\).
 \label{lem:distance_evolution}
 
 \begin{align*}
-\partial_t d_t(p, q) &= -(\kappa_q-h_q) \inpr{\nor_q}{w} + (\kappa_p-h_p) \inpr{\nor_p}{w} \\
+\partial_t d_t(p, q) &= -(\kappa_q-h) \inpr{\nor_q}{w} + (\kappa_p-h) \inpr{\nor_p}{w} \\
 \partial_t \ell_t(p, q) &= - \int_p^q \kappa(\kappa-h) ds \\
 \partial_t L &= - \int_{\gamma} \kappa(\kappa-h) ds
 \end{align*}
@@ -124,9 +124,9 @@ the unit vector pointing from \(p\) to \(q\).
 From the flow equation \eqref{eq:flow}, we obtain
 \[
 \begin{split}
-\partial_t \inpr{\gamma(q) - \gamma(p)}{\gamma(q) - \gamma(p)} &= 2 \inpr{-(\kappa(q)-h(q)) \nor(q)}{\gamma(q) - \gamma(p)} \\
-&\quad  - 2 \inpr{-(\kappa(p)-h(p)) \nor(p)}{\gamma(q) - \gamma(p)} \\
-&= 2 d\left[-\inpr{(\kappa(q)-h(q))\nor(q)}{w} + \inpr{(\kappa(p)-h(p))\nor(p)}{w}\right]
+\partial_t \inpr{\gamma(q) - \gamma(p)}{\gamma(q) - \gamma(p)} &= 2 \inpr{-(\kappa(q)-h) \nor(q)}{\gamma(q) - \gamma(p)} \\
+&\quad  - 2 \inpr{-(\kappa(p)-h) \nor(p)}{\gamma(q) - \gamma(p)} \\
+&= 2 d\left[-\inpr{(\kappa(q)-h)\nor(q)}{w} + \inpr{(\kappa(p)-h)\nor(p)}{w}\right]
 \end{split}
 \]
 The evolution of \(d = \left(\inpr{\gamma(q) - \gamma(p)}{\gamma(q) - \gamma(p)}\right)^{1/2}\) follows by the chain rule.
@@ -512,9 +512,8 @@ where
 Let $X: \S^1\times [0,T)$ be a solution of the flow \eqref{eq:flow}. For any \(x_0, t_0\), let $(p_0,q_0)$ be points such that $\tfrac{2\pi}{L(t_0)} d(p_0, q_0, t_0) = \chordarcprofile(x_0)$ and $x_0 = \frac{2\pi}{L(t_0)} \ell(p_0, q_0, t_0)$. The chord-arc profile is a viscosity super-solution of the following equation
 \[
 \begin{split}
-\partial_{\tau} Z & \geq 4 Z'' + 4Z'' - 4\xi \frac{1-(Z')^2}{Z} \\
-&\quad + \left(\frac{L}{2\pi}\right)^2 \avg{\kappa(\kappa-h)} (Z - x Z') + \frac{L}{2\pi} Z' \int_p^q \kappa(\kappa-h) ds \\
-&\quad + (-1)^{\delta} \frac{L}{2\pi} \sqrt{1-(Z')^2} [(-1)^{\xi}h_{q_0} + h_{p_0}]
+\partial_{\tau} Z & \geq 4 Z'' + \left(\frac{L}{2\pi}\right)^2  \avg{\kappa^2} (Z - x Z') + \frac{L}{2\pi} \int_{p_0}^{q_0} \kappa^2 ds Z' - 4\xi \frac{1 - (Z')^2}{Z} \\
+&\quad - \left[(-1)^{\delta+1} \sqrt{1-(Z')^2}((-1)^{\xi+1} + 1) + \avg{\kappa^2} (Z - x Z') + 2 Z'\arccos(Z')\right] \frac{Lh}{2\pi} .
 \end{split}
 \]
 \end{thm}
@@ -549,9 +548,9 @@ satisfies $\partial_{\tau} \Phi \leq 0$ at $(p_0, q_0, \tau_0)$. That is,
 Using the time variation formula from \Cref{lem:distance_evolution}, at \((p_0, q_0, t_0)\),
 \[
 \begin{split}
-\partial_t \left[\frac{2\pi}{L} d\right] - \varphi' \partial_t \left[\frac{2\pi}{L}\ell\right] &= \frac{2\pi}{L}\left[-(\kappa_{q_0}-h_{q_0}) \inpr{\nor_q}{w} + (\kappa_{p_0}-h_{p_0}) \inpr{\nor_p}{w}\right] + \frac{2\pi d}{L} \frac{1}{L} \int_{\gamma} \kappa(\kappa-h) ds \\
+\partial_t \left[\frac{2\pi}{L} d\right] - \varphi' \partial_t \left[\frac{2\pi}{L}\ell\right] &= \frac{2\pi}{L}\left[-(\kappa_{q_0}-h) \inpr{\nor_q}{w} + (\kappa_{p_0}-h) \inpr{\nor_p}{w}\right] + \frac{2\pi d}{L} \frac{1}{L} \int_{\gamma} \kappa(\kappa-h) ds \\
 &\quad + \frac{2\pi}{L} \varphi' \int_p^q \kappa(\kappa-h) ds - \frac{2\pi\ell}{L} \frac{\varphi'}{L} \int_{\gamma}\kappa(\kappa-h) ds \\
-&= \frac{2\pi}{L}\left[-(\kappa_{q_0}-h_{q_0}) \inpr{\nor_q}{w} + (\kappa_{p_0}-h_{p_0}) \inpr{\nor_p}{w}\right] \\
+&= \frac{2\pi}{L}\left[-(\kappa_{q_0}-h) \inpr{\nor_q}{w} + (\kappa_{p_0}-h) \inpr{\nor_p}{w}\right] \\
 &\quad + \avg{\kappa(\kappa-h)} (\varphi - x \varphi') + \frac{2\pi}{L} \varphi' \int_p^q \kappa(\kappa-h) ds.
 \end{split}
 \]
@@ -564,7 +563,7 @@ Hence equation \eqref{eq:tau_ineq} becomes
 \begin{equation}
 \label{eq:time_ineq}
 \begin{split}
-\partial_{\tau} \varphi &\geq \frac{L}{2\pi} (-1)^{\delta+1} \sqrt{1-(\varphi^2)} [(-1)^{\xi}\kappa_{q_0} + \kappa_{p_0} - ((-1)^{\xi}h_{q_0} + h_{p_0})] \\
+\partial_{\tau} \varphi &\geq \frac{L}{2\pi} (-1)^{\delta+1} \sqrt{1-(\varphi')^2} [(-1)^{\xi}\kappa_{q_0} + \kappa_{p_0} - ((-1)^{\xi} + 1)h] \\
 &\quad + \left(\frac{L}{2\pi}\right)^2 \avg{\kappa(\kappa-h)} (\varphi - x \varphi') + \frac{L}{2\pi} \varphi' \int_p^q \kappa(\kappa-h) ds.
 \end{split}
 \end{equation}
@@ -588,12 +587,24 @@ Substituting into equation \eqref{eq:time_ineq} gives
 \begin{equation}
 \label{eq:spacetime_ineq}
 \begin{split}
-\partial_{\tau} \varphi &\geq 4\varphi'' - 4\xi \frac{1-(\varphi')^2}{\varphi} \\
-&\quad + \left(\frac{L}{2\pi}\right)^2 \avg{\kappa(\kappa-h)} (\varphi - x \varphi') + \frac{L}{2\pi} \varphi' \int_p^q \kappa(\kappa-h) ds \\
-&\quad + (-1)^{\delta} \frac{L}{2\pi} \sqrt{1-(\varphi')^2} [(-1)^{\xi}h_{q_0} + h_{p_0}].
+\partial_{\tau} \varphi &\geq 4\varphi'' + (-1)^{\delta} \sqrt{1-(\varphi')^2} [(-1)^{\xi} + 1]\frac{Lh}{2\pi} - 4\xi \frac{1-(\varphi')^2}{\varphi} \\
+&\quad + \left(\frac{L}{2\pi}\right)^2 \avg{\kappa(\kappa-h)} (\varphi - x \varphi') + \frac{L}{2\pi} \varphi' \int_p^q \kappa(\kappa-h) ds.
 \end{split}
 \end{equation}
 
+For the global curvature integral,
+\[
+\avg{\kappa(\kappa-h)} = \frac{1}{L} \int_{\gamma} \kappa^2 - h \kappa ds = \avg{\kappa^2} - \frac{2\pi}{L} h
+\]
+since \(h\) is independent of \(s\) and the total curvature of a simple, closed plane curve is \(2\pi\).
+
+For the other curvature integral
+\[
+\int_p^q \kappa(\kappa-h) = \int_p^q \kappa^2 ds - 2 h \theta = \int_p^q \kappa^2 - 2h\arccos(\varphi')
+\]
+since \(w\) bisects \(\tang_p\) and \(\tang_q\) hence the angle between \(\tang_p\) and \(\tang_q\) is \(2\theta\).
+
+Substitution into equation \eqref{eq:spacetime_ineq} completes the proof.
 \end{proof}
 
 \section{Comparison Theorem}
