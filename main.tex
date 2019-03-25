@@ -137,6 +137,36 @@ Using the evolution of \(ds\) from Lemma \ref{lem:basic_evolution},
 \]
 \end{proof}
 
+\section{Conserved Quantities}
+\label{sec:conserved}
+
+The examples of curve shortening flow with a global term in equations \eqref{eq:lpcsf} and \eqref{eq:apcsf} arise as flows preserving a global quantity. Requiring that such quantities are preserved leads to the specific form of those examples. Now we investigate the extent which the converse holds. That is, given an \(h\), is there a conserved quantity?
+
+\begin{lemma}
+\label{lem:conserved}
+
+Let \(f\) solve
+\[
+\frac{\int f' (\partial_s^2 \kappa + \kappa^3) - f\kappa^2ds}{\int f'\kappa^2 - f\kappa ds} = h
+\]
+Then the quantity
+\[
+Q = \int_{\S^1} f(\kappa) ds
+\]
+is conserved.
+\end{lemma}
+
+\begin{proof}
+With the help of Lemma \ref{lem:basic_evolution}, we compute
+\begin{equation}
+\begin{split}
+\partial_t Q &= \int f' \partial_t \kappa + f \partial_t ds \\
+&= \int f' (\partial_s^2 \kappa + \kappa^2(\kappa-h)) - f\kappa(\kappa-h) ds \\
+&= \int f' (\partial_s^2 \kappa + \kappa^3) - f\kappa^2ds - h \int f'\kappa^2 - f\kappa ds
+\end{split}
+\end{equation}
+\end{proof}
+
 \section{The chord arc profile}
 \label{sec:chordarc}
 
