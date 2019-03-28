@@ -507,13 +507,17 @@ where
 \]
 \end{defn}
 
+\begin{rem}
+The following differential inequality for the evolving chord-arc profile is scale invariant provided that \(h\) is degree \(-1\) homogeneous (so that \(h(\lambda \gamma) = \lambda^{-1} h(\gamma)\) for a real number \(\lambda \ne 0\).
+\end{rem}
+
 \begin{thm}
 \label{thm:viscosity}
 Let $X: \S^1\times [0,T)$ be a solution of the flow \eqref{eq:flow}. For any \(x_0, t_0\), let $(p_0,q_0)$ be points such that $\tfrac{2\pi}{L(t_0)} d(p_0, q_0, t_0) = \chordarcprofile(x_0)$ and $x_0 = \frac{2\pi}{L(t_0)} \ell(p_0, q_0, t_0)$. The chord-arc profile is a viscosity super-solution of the following equation
 \[
 \begin{split}
 \partial_{\tau} Z & \geq 4 Z'' + \left(\frac{L}{2\pi}\right)^2  \avg{\kappa^2} (Z - x Z') + \frac{L}{2\pi} \int_{p_0}^{q_0} \kappa^2 ds Z' - 4\xi \frac{1 - (Z')^2}{Z} \\
-&\quad - \left[(-1)^{\delta+1} \sqrt{1-(Z')^2}((-1)^{\xi+1} + 1) + \avg{\kappa^2} (Z - x Z') + 2 Z'\arccos(Z')\right] \frac{Lh}{2\pi} .
+&\quad + \left[(-1)^{\delta} \sqrt{1-(Z')^2}((-1)^{\xi} + 1) - (Z - x Z') - 2 Z'\arccos(Z')\right] \frac{Lh}{2\pi} .
 \end{split}
 \]
 \end{thm}
@@ -587,7 +591,7 @@ Substituting into equation \eqref{eq:time_ineq} gives
 \begin{equation}
 \label{eq:spacetime_ineq}
 \begin{split}
-\partial_{\tau} \varphi &\geq 4\varphi'' + (-1)^{\delta} \sqrt{1-(\varphi')^2} [(-1)^{\xi} + 1]\frac{Lh}{2\pi} - 4\xi \frac{1-(\varphi')^2}{\varphi} \\
+\partial_{\tau} \varphi &\geq 4\varphi'' - 4\xi \frac{1-(\varphi')^2}{\varphi} + (-1)^{\delta} \sqrt{1-(\varphi')^2} [(-1)^{\xi} + 1]\frac{Lh}{2\pi} \\
 &\quad + \left(\frac{L}{2\pi}\right)^2 \avg{\kappa(\kappa-h)} (\varphi - x \varphi') + \frac{L}{2\pi} \varphi' \int_p^q \kappa(\kappa-h) ds.
 \end{split}
 \end{equation}
